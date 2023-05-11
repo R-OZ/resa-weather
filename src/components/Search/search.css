@@ -1,0 +1,125 @@
+@media (min-width: 280px) {
+.search-container{
+    height: 35px;
+    width: 60vw;
+    max-width: 500px;
+    color:white;
+    background-color: rgba(0, 0, 0, 0.267);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 100px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 3;
+}
+.search-img{
+    height: 22px;
+    display: block;
+    margin-left: auto;
+}
+#search-icon{
+    height: 60%;
+}
+#location-icon{
+    height: 45%;
+    user-select: none;
+}
+#search-text{
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: white;
+    width: 100%;
+}
+#search-text::placeholder{
+    color: rgb(214, 214, 214);
+}
+#search-text:focus{
+    outline: none;
+}
+.search-results-container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top:0;
+    left: 0;
+    background-color: none;
+    backdrop-filter: blur(12px);
+    color: black;
+    z-index: 2;
+    overflow-y: scroll;
+    padding: 50px 0px 20px 0px;
+    display: none;
+}
+.show{
+    display: block;
+}
+#search-results-cancel{
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    width: fit-content;
+    margin-left: auto;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    cursor: pointer;
+
+}
+.search-results{
+    margin-top: 30px;
+    height: 85%;
+    overflow-y: scroll;
+    padding: 0 25px;
+
+}
+.search-results-item{
+    font-size: 17px;
+    padding: 15px 0px; 
+    border-bottom: 1px solid rgb(239, 239, 239);
+    white-space: nowrap; 
+    overflow: hidden; /* Hide the horizontal overflow */
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+.search-results-item:hover{
+    color: white;
+}
+}
+
+@media (min-width: 1024px) {
+.search-results-container{
+    width: 60vw;
+    max-width: 500px;
+    height: fit-content;
+    top: 20px;
+    left:0;
+    right: 0;
+    margin: auto;
+    overflow: hidden;
+    border: 1px solid rgb(223, 223, 223);
+    border-top: none;
+    padding-top: 40px;
+    padding-bottom: 0px;
+    border-radius:18px;
+}
+.search-results{
+    margin-top: 10px;
+    overflow: hidden;
+    padding: 0 25px;
+    height: 100%;
+}
+.search-results-item{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+#search-results-cancel{
+    display: none;
+}
+    
+}

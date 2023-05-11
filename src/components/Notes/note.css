@@ -1,0 +1,82 @@
+@media (min-width:280px) {
+    .notes-save-btn{
+        position: absolute;
+        width: fit-content;
+        top:20px;
+        left:0;
+        right:0;
+        margin:auto;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        padding: 5px 20px;
+        border: 2px solid white;
+        border-radius: 12px;
+        font-weight: 500;
+        font-size: 18px;
+    }
+    #notes-save{
+        height: 20px;
+    } 
+    .note{
+        background-color: rgba(255, 255, 255, 0.467);
+        border-radius: 18px;
+        margin: 10px 20px 0px 20px;
+        padding: 15px 15px 20px 15px;
+    }
+    .note-title{
+        display: block;
+        width: 100%;
+        font-size: 20px;
+        font-weight: 500;
+        color: black;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid rgb(105, 105, 105);
+        padding : 5px 0;
+    }
+    .note-title:focus, .note-body:focus{
+        outline: none;
+    }
+    .note-title::placeholder, .note-body::placeholder{
+        color:rgb(96, 96, 96);
+    }
+    .note-body{
+        display: block;
+        background-color: transparent;
+        border: none;
+        resize: none;
+        width: 100%;
+        height: 400px;
+        margin-top: 15px;
+        /* border: 1px solid black; */
+        font-size: 16px;
+    }
+    .note-btns{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding: 0 20px;
+        margin-top: 30px;
+    }
+    .back-delete{
+        border: 2px solid rgb(255, 255, 255);
+        padding: 15px 0;
+        border-radius: 12px;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    #notes-back-save{
+        height: 23px
+    }
+}
+
+@media (min-width:1024px) {
+    
+    
+}

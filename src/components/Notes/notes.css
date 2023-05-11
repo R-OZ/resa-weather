@@ -1,0 +1,129 @@
+@media (min-width:280px) {
+.notes-container{
+    position: absolute;
+    top:0;
+    right:0;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: red; */
+    overflow-x: hidden;
+
+}  
+#notes-icon{
+    height:28px;
+    display: block;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    z-index: 4;
+}
+.display-none{
+    display: none;
+}
+.notes-drawer{
+    backdrop-filter: blur(15px);
+    background-color: transparent;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    z-index: 3;
+    right: -100vw;
+    height: 100vh;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    transition: transform .2s ease-out;
+}
+.slide{
+    transform: translateX(-100vw);
+}
+.notes-add{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid white;
+    border-radius: 10px;
+    width: fit-content;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 5px  20px;
+
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+#notes-add-icon{
+    height: 25px;
+}
+.notes-edit{
+    border-bottom: 1px solid white;
+    padding-bottom: 8px;
+    margin:10px 20px;
+    text-align: right;
+
+}
+#notes-edit-btn{
+    background-color: rgba(255, 255, 255, 0.505);
+    padding: 0px 10px;
+    border-radius: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.notes-cards{
+    height: 90%;
+    overflow-y: scroll;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.notes-card-item{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.notes-card-remove{
+    height: 40px;
+    display: none;
+    cursor: pointer;
+}
+.reveal{
+    display: block;
+}
+}
+
+@media (min-width:1024px) {
+    .notes-container{
+        position: fixed;
+    }
+    #notes-icon{
+        height: 22px;
+        right: .5vw;
+    }
+    .notes-drawer{
+        width: 20vw;
+        right:0;
+        border-left: 1px solid white;
+        height: 100%;
+    }
+    .notes-add{
+        padding: 5px 15px;
+        font-size: 16px;
+    }
+    .notes-cards{
+        flex-direction: column;
+    }
+    
+}
+@media (min-width:1440px) {
+    #notes-icon{
+        height: 25px;
+        right: 1vw;
+    }
+
+}
+

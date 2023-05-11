@@ -1,0 +1,22 @@
+.notes-card{
+    padding: 10px 15px 15px 15px;
+    height: 109px;
+    border-radius: 18px;
+    background-color:rgba(255, 255, 255, 0.467);    ;
+}
+.notes-card-title{
+    font-size: 18px;
+    font-weight: 500;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgb(125, 125, 125);
+}
+.notes-card-body{
+    margin-top: 10px;
+    font-size: 16px;
+    display: -webkit-box; /* Set the display to a box layout */
+    -webkit-box-orient: vertical; /* Set the box layout to vertical */
+    -webkit-line-clamp: 2; /* Set the maximum number of lines to 2 */
+    white-space: normal; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}

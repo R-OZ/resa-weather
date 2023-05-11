@@ -1,0 +1,189 @@
+@media (min-width: 280px)  {
+    .city{
+        background: linear-gradient(45deg, #1c92d2, #abaeae);
+        min-height: 100vh;
+        padding: 60px 20px 25px 20px;
+
+    }
+    #city-fav-icon{
+        height:28px;
+        display: block;
+        position: absolute;
+        top: 25px;
+        right: 20px;
+        top: 85px;
+    }
+    .city-hour{
+        padding: 10px 15px;
+        background-color: rgba(193, 209, 255, 0.462);
+        border-radius: 15px;
+        max-width: 600px;
+        margin: auto;
+    }
+    #city-hour-title{
+        padding-bottom: 8px;
+        border-bottom: 1px solid white;
+        font-size: 18px;
+        font-weight: 500;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+    }
+    #city-icon{
+        height: 17px;
+    }
+    .city-hour-body{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width:100%;
+        overflow: hidden;
+        padding-bottom: 8px;
+    }
+    .city-hour-cards{
+        position: relative;
+        width: 100%;
+        cursor: pointer;
+        transition: margin-bottom .2s ease-out;
+    }
+    .margin-move{
+        margin-bottom: 140px;
+    }
+    .city-hour-card{
+        position: relative;
+        z-index: 1.1;
+        background: rgba(255, 255, 255, 0.675);        
+        padding: 10px 15px;
+        /* background-color: red; */
+        border-radius: 10px;
+        display: flex;
+        color: black;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer; 
+    }
+    
+    #city-hour-time{
+        font-size: 20px;
+    }
+    #city-hour-icon{
+        height: 28px;
+    }
+    #city-hour-temp{
+        font-size: 18px;
+    }
+    .city-hour-arrow{
+        height: 20px;
+        background-color: transparent;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        padding: 4px 6px;
+        border-radius: 10px;
+        transition: scaleY .3s ease-out;
+    }
+    .flip{
+        transform: scaleY(-1);
+    }
+    .city-hour-card2{
+        position: absolute;
+        top:0;
+        left: 0;
+        z-index: 0;
+        background-color: rgba(226, 226, 227, 0.337);
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        width: 100%;
+        padding: 20px 3px 20px 3px;
+        transition: all .2s ease-out, opacity .3s ease-out;
+        opacity: 0;
+    }
+    .card2-move{
+        top:80%;
+        opacity: 1;
+    }
+    .city-hour-card2-content{
+        display: grid;
+        gap: 15px 10px;
+        width: 90%;
+        margin: auto;
+        grid-template-columns: 1fr 1fr;
+    }
+    .city-hour-weather{
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        justify-self: center;
+        gap: 8px;
+        /* background-color: red; */
+        width: 110px;
+    }
+    #vw{
+        height: 25px;
+        display: block;
+    }
+    .city-hour-weather-txt>span{
+        font-weight: 500;
+        font-size: 15px;
+    }
+
+    .city-weather{
+        display: flex;
+        gap: 10px;
+        max-width: 400px;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .city-weather-item{
+        background-color: rgba(193, 209, 255, 0.462);
+        padding: 15px 0px;
+        width: 100%;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px
+    }
+    .city-weather-icon{
+        height: 33px;
+    }
+    #city-weather-title{
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+    }
+    #city-weather-desc{
+        text-align: center;
+    }
+}
+@media (min-width:1024px) {
+
+    #city-fav-icon{
+        right: 25vw;
+    }
+    .city-hour{
+        width: 55vw;
+        max-width: fit-content;
+        overflow-x: scroll;
+    }
+    .city-hour-body{
+        display: grid;
+        grid-template-columns: auto  auto;
+    }
+
+    .city-hour-card{
+        gap: 10px;
+    }
+    #city-hour-time{
+        font-size: 17px;
+    }
+    #city-hour-temp{
+        text-align: center;
+        font-size: 15px;
+    }
+}
+
+@media (min-width:1440px) {
+    .city-hour-body{
+        grid-template-columns: auto auto auto;
+    }
+}

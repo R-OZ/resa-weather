@@ -1,0 +1,89 @@
+@media (min-width:280px) {
+
+    
+.welcome{
+    position: relative;
+    background: linear-gradient(45deg, #1c92d2, #abaeae);
+    background-size:100%;
+    background-size: cover;
+    background-position:center;
+    min-height: 100vh;
+    padding: 20px 20px 25px 20px;  
+}
+.welcome-cover{
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width:100%;
+    background-color: none;
+    z-index: 999;
+}
+.welcome-text{
+    margin-top: -60px;
+}
+#welcome-title{
+    text-align: center;
+    font-weight: 500;
+    font-size: 33px;
+}
+#welcome-caption{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    width: 200px;
+    margin: auto;
+}
+.welcome-feature{
+    background-color: rgba(193, 209, 255, 0.462);
+    padding: 10px 15px 15px 15px;
+    border-radius: 12px;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 30px;
+}
+#welcome-feature-title{
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+}
+.welcome-features{
+    display: grid;
+    gap: 25px 0px;
+    max-width: fit-content;
+    margin: auto;
+    margin-top: 15px;
+    grid-template-columns: auto;
+}
+.welcome-icon-container{
+    display: flex;
+    align-self: center;
+    gap: 8px;
+    align-items: flex-start;
+    /* padding-bottom: 5px; */
+    /* border-bottom: 1px solid white; */
+}
+#welcome-icon{
+    height: 35px;
+    display: block;
+}
+#welcome-icon-title{
+    font-weight: 500;
+    font-size: 18px;
+}
+}
+@media (min-width: 1024px) {
+    .welcome-feature{
+        max-width: 680px;
+    }
+    .welcome-features{
+        grid-template-columns: auto  auto;
+        gap: 25px 20px;
+        justify-items: center;
+    }
+    
+}

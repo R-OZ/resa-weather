@@ -1,0 +1,20 @@
+.nf{
+    position: relative;
+    background: linear-gradient(45deg, #1c92d2, #abaeae);
+    background-size:100%;
+    background-size: cover;
+    background-position:center;
+    min-height: 100vh;
+    padding: 20px 20px 25px 20px;  
+}
+#nf-title{
+    text-align: center;
+    font-weight: 500;
+    font-size: 50px;
+}
+#nf-caption{
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    margin: auto;
+}
