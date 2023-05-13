@@ -1,21 +1,19 @@
 @media (min-width: 280px)  {
     .card-container{
+        width: 100%;
         display: flex;
         justify-content: space-between;
         padding: 10px 10px;
         background-color: rgba(255, 255, 255, 0.467);
         border-radius: 18px;
-        width: 100%;
         transition: all .4s ease;
         text-decoration: none;
         color: black;
         cursor: pointer;
     }
     .card-head{
-        display: flex;
-        width: 45%;
-        flex-direction: column;
-        gap: 2;
+        width: 48% ;
+        position: relative;
     }
     #card-city{
         font-size: 22px;
@@ -25,11 +23,12 @@
         
     }
     #card-country{
+        position: absolute;
         font-size: 15px;
-        width: 100%;
+        width:100%;
         white-space: nowrap; 
         overflow: hidden; /* Hide the horizontal overflow */
-        text-overflow: ellipsis;
+        text-overflow:ellipsis;
     }
     .card-body{
         display: flex;
@@ -39,7 +38,7 @@
         background-color: none;
     }
     #card-icon{
-        height: 45px;
+        width: 50px;
         align-self: center;
     }
     #card-temp{
@@ -55,7 +54,7 @@
         min-width: 145px;
         max-width: 160px;
         flex-direction: column;
-        gap: 5px;
+        gap: 22px;
     }
     .card-head{
         width: 100%;
@@ -63,10 +62,16 @@
     .card-body{
         flex-direction: column;
         /* background-color: red; */
+        height: 100px;
         gap: 5px;
     }
     #card-city{
         font-size: 20px;
+    }
+    #card-icon{
+        /* height: 40px;
+        width: auto; */
+        align-self: center;
     }
 
     #card-temp{

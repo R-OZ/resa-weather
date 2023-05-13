@@ -9,10 +9,10 @@ export const getDayofWeek = (epochTime) => {
 
 //function to return boolean of day or night, to edit background theme
 export const checkDay = (epochTime) => {
-    const date = new Date(epoch * 1000);
+    const date = new Date(epochTime * 1000);
     const hour = date.getUTCHours();
     
-    // Determine whether the hour is later than 6:00 PM UTC
-    const isLater = hour >= 18;
+    // Determine whether the hour is earlier than 6:00 PM UTC
+    const isLater = hour <= 18;
     return isLater;
 }

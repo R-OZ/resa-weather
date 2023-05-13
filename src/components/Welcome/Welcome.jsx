@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './welcome.css'
 import Smiley from '../../assets/aminations/Smiley'
 import favorites from '../../assets/icons/love.png'
 import explore from '../../assets/icons/explore.png'
 import notes from '../../assets/icons/notes.png'
 import theme from '../../assets/icons/theme.png'
+import { useGlobalState } from '../../Context'
+import {useNavigate} from 'react-router-dom'
+import { CityWeather } from '../../api/CityWeather'
 
 const WelcomeIcon =({image, title, body})=>{
     return(
@@ -18,6 +21,30 @@ const WelcomeIcon =({image, title, body})=>{
     )
 }
 const Welcome = () => {
+  const navigate = useNavigate()
+  const {globalLoadingValue:[globalLoading, setGlobalLoading], geoLocationValue:[geoLocation, setGeoLocation], currentCityValue:[currentCity, setCurrentCity]} = useGlobalState()
+  
+  const getLocation = ()=>{
+    navigator.geolocation.getCurrentPosition(
+      position  => {
+        CityWeather(`${position.coords.latitude.toString()},${position.coords.longitude.toString()}`)
+          .then(res =>{
+            localStorage.setItem('RESA_location', JSON.stringify(res))
+            setGeoLocation(res)
+            navigate('/city')
+          })
+          .catch(err=> console.log(err))
+      },
+      error => {
+        console.log(error.message);
+        localStorage.setItem('RESA_location', "-1")
+        setGeoLocation("-1")
+      }
+    );
+  }
+  useEffect(()=>{
+    getLocation();
+  },[])
   return (
     <>
     <div className='welcome'>

@@ -26,11 +26,12 @@
         gap: 15px;
         margin: auto;
         margin-top: 20px;
+        width: 100%;
         max-width: 600px;
     }
     .favorites-card-item{
         display: flex;
-        gap: 10px;
+        gap: 15px;
         align-items: center;
     }
     .favorites-remove{
@@ -67,12 +68,12 @@
         max-width: 1000px;
         margin: auto;
         margin-top: 40px;
-        flex-direction: row;
-        flex-wrap: wrap;
+        /* flex-direction: row;
+        flex-wrap: wrap; */
         gap: 20px 30px;
     }
     .favorites-card-item{
-        gap:3px
+        gap:3px;
     }
     .favorites-remove{
         height: 30px;

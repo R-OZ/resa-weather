@@ -1,4 +1,3 @@
-import React from 'react'
 import fogIcon from '../assets/images/fog.png'
 import freezingFogIcon from '../assets/images/freezingFog.png'
 import snowIcon from '../assets/images/snow.png'

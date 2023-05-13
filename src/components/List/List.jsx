@@ -5,7 +5,7 @@ import Card from './Card'
 import favorite from '../../assets/icons/love.png'
 import explore from '../../assets/icons/explore.png'
 
-const List = ({id, cities, num}) => {
+const List = ({id, cities}) => {
 
   return (
     <div className='list-container'>
@@ -17,8 +17,10 @@ const List = ({id, cities, num}) => {
 
         <div className="list-cards">
             {
-              num.map(()=>(
-                <Card />
+              cities.map((item, idx)=>(
+                <Card key={idx}
+                  city_obj={item}
+                />
               ))
             }
         </div>

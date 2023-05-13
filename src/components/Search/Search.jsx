@@ -1,30 +1,36 @@
 import React, {useState, useRef, useEffect} from 'react'
 import './search.css'
-import {useLocation} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 import search from '../../assets/icons/search2.png'
 import location from '../../assets/icons/location.png'
 import Loading from '../Loading/Loading'
 import { useGlobalState } from '../../Context'
+import { SearchCity } from '../../api/SearchCity'
+import { CityWeather } from '../../api/CityWeather'
 
 const Search = () => {
+  //when searching, make sure before you go to a city page, check if that city is in favorites, then go to the city so it can show its notes
+  const {searchValue:[searchText,setSearchText], globalLoadingValue:[globalLoading, setGlobalLoading], favoritesValue:[favoritesList, setFavoritesList], currentCityValue:[currentCity, setCurrentCity]} = useGlobalState()
   const [isSearching, setIsSearching] = useState(false)
-  const {searchValue} = useGlobalState()
-  const [searchText, setSearchText] = searchValue
+  const [searchResults, setSearchResults] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const browse = useNavigate()
   const searchRef = useRef()
   const pageURL = useLocation();
   var isOnFavoritesPage = pageURL.pathname==='/favorites'
 
-  const fetch = (e)=>{
-    setTimeout(() => setIsLoading(!isLoading), 2000);
-    setSearchText(e.target.value)
+  const fetchCities = async(txt)=>{
+    setSearchText(txt)
     if (searchText && window.innerWidth < 1024){
       document.body.style.overflow = 'hidden';
     }
-  }
-
-  const handleScroll =()=>{
-    searchRef.current.blur();
+    setIsLoading(true)
+    if(txt){
+      let res = await SearchCity(txt)
+      setSearchResults([...res])
+      console.log([...res])
+      setIsLoading(false)
+    }
   }
   
   const clearSearch =()=>{
@@ -32,6 +38,36 @@ const Search = () => {
     setSearchText("")
   }
 
+  const handleClick = async(obj)=>{
+    if(isOnFavoritesPage){
+      clearSearch();
+      setGlobalLoading(true)
+      let res = await CityWeather(obj.coord)
+      const newObj = {...res, notes:[]}
+      setFavoritesList((prevList)=>{
+        //sort here
+        let newList = [...prevList]
+        newList.push(newObj)
+        localStorage.setItem('RESA_favorites', JSON.stringify(newList))
+        return newList
+      })
+    }
+    else{
+      //go to city page instead
+      clearSearch()
+      setGlobalLoading(true)
+      browse('/city')
+      let res = await CityWeather(obj.coord)
+      setCurrentCity(res)
+      localStorage.setItem('RESA_currentCity', JSON.stringify(res))
+      setGlobalLoading(false)
+    }
+  }
+  const handleScroll =()=>{
+    searchRef.current.blur();
+  }
+  
+  
   const arr = [1,2,3,4,5,6]
   
   return (
@@ -40,7 +76,7 @@ const Search = () => {
         <img id='search-icon' src={search}/>
         <input type="text" 
           ref={searchRef} 
-          onChange={(e)=>fetch(e)} 
+          onChange={(e)=>fetchCities(e.target.value)} 
           id='search-text' 
           placeholder={isOnFavoritesPage? 'Search to add a city' : 'Search for a city'} 
         />
@@ -53,9 +89,9 @@ const Search = () => {
             isLoading?
               <Loading />
             :
-              arr.map((item,idx)=>(
-                <p key={idx} className="search-results-item" style={{borderBottom: idx==arr.length-1? '0px': '' }}>
-                  Ikoyi, Lagos State, Nigeria
+              searchResults?.map((item,idx)=>(
+                <p key={idx} onClick={()=>handleClick(item)} className="search-results-item" style={{borderBottom: idx==searchResults?.length-1? '0px': '' }}>
+                 <span style={{fontWeight: 500}}>{item.name}</span>, {item.country}
                 </p>
               ))
           }

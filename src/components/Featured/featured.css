@@ -11,9 +11,10 @@
   
 }
 #featured-weather{
-    width: fit-content;
+    max-width: 250px ;
     margin: auto;
     font-size: 15px;
+    text-align: center;
 }
 .featured-temp-icon{
     margin-top: 20px;

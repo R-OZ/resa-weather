@@ -4,20 +4,23 @@ import edit from '../../assets/icons/pencil.png'
 import done from '../../assets/icons/done.png'
 import remove from '../../assets/icons/delete.png'
 import Card from '../../components/List/Card'
+import { useGlobalState } from '../../Context'
 
 const Explore = () => {
   const [list, setList]= useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
   const [isEditing, setIsEditing] = useState(false)
-  
+  const {exploreValue:[exploreList, setExploreList]} = useGlobalState()
+
   const editSwitch = () =>{
     setIsEditing(!isEditing)
   }
 
   const removeItem = (index) => {
-    setList((prevList) => {
-    const newItems = [...prevList];
-    newItems.splice(index, 1);
-    return newItems;
+    setExploreList((prevList) => {
+      const newItems = [...prevList];
+      newItems.splice(index, 1);
+      localStorage.setItem('RESA_explore', JSON.stringify(newItems));
+      return newItems;
     });
   };
 
@@ -34,9 +37,11 @@ const Explore = () => {
 
       <div className="favorites-cards">
         {
-          list.map((item, idx)=>(
+          exploreList?.map((item, idx)=>(
             <div key={idx} className="favorites-card-item">
-              <Card />
+              <Card key={idx} 
+                city_obj={item}
+              />
               <img onClick={()=>removeItem(idx)} src={remove} 
                 alt="delete" 
                 className={`favorites-remove ${isEditing? 'reveal' : ''}`} 
