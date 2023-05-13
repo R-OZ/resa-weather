@@ -7,6 +7,7 @@ import Loading from '../Loading/Loading'
 import { useGlobalState } from '../../Context'
 import { SearchCity } from '../../api/SearchCity'
 import { CityWeather } from '../../api/CityWeather'
+import { sortByCity } from '../../utilities/Sorter'
 
 const Search = () => {
   //when searching, make sure before you go to a city page, check if that city is in favorites, then go to the city so it can show its notes
@@ -43,14 +44,15 @@ const Search = () => {
       clearSearch();
       setGlobalLoading(true)
       let res = await CityWeather(obj.coord)
-      const newObj = {...res, notes:[]}
+      let newObj = {...res, notes:[]}
       setFavoritesList((prevList)=>{
         //sort here
         let newList = [...prevList]
         newList.push(newObj)
-        localStorage.setItem('RESA_favorites', JSON.stringify(newList))
+        localStorage.setItem('RESA_favorites', JSON.stringify(sortByCity(newList)))
         return newList
       })
+      setGlobalLoading(false)
     }
     else{
       //go to city page instead

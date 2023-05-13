@@ -99,8 +99,14 @@ const City = () => {
       </div>
     :
       <div className='city'>
-        <Notes />
-        <img src={favorites} alt="favorites?" id="city-fav-icon" />
+        {
+          currentCity2.notes?
+            <>
+              <Notes />
+              <img src={favorites} alt="favorites?" id="city-fav-icon" />
+            </>
+          : null
+        }
 
         <Featured 
           city={currentCity2.name}

@@ -4,7 +4,7 @@ import { API_URL, API_KEY } from './constants/Constants'
 import { checkDay, getDayofWeek } from '../utilities/DateFormatter'
 
 
-export const CityWeather = (city: string) =>(
+export const CityWeather = (city: string, notes=null) =>(
     axios.get(`${API_URL}/forecast.json?key=${API_KEY}&q=${city}&days=7`)
     .then((res)=>{
         const {location, current, forecast:{forecastday}} =  res.data
@@ -42,7 +42,12 @@ export const CityWeather = (city: string) =>(
                 return acc
             },[])
         }
-        return (city_data)
+        if (notes){
+            return ({...city_data, notes:notes})
+        }
+        else{
+            return (city_data)
+        }
     })
     .catch((err)=> {
         console.error(err)

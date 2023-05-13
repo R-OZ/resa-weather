@@ -84,19 +84,21 @@ const Home = ({}) => {
           newExploreList.push(res)
         }
         for (var j =0; j<favoritesList.length; j++){
-          let res2 = await CityWeather(favoritesList[j].coord)
+          let res2 = await CityWeather(favoritesList[j].coord, favoritesList[j].notes)
           newFavoritesList.push(res2)
         }
       }
       else{
-        newExploreList = sortByCity([...exploreList])
-        newFavoritesList = sortByCity([...favoritesList])
+        newExploreList = [...exploreList]
+        newFavoritesList = [...favoritesList]
       }
     }
-    localStorage.setItem('RESA_explore', JSON.stringify(sortByCity(newExploreList)))
-    localStorage.setItem('RESA_favorites', JSON.stringify(sortByCity(newFavoritesList)))
-    setExploreList(sortByCity([...newExploreList]))
-    setFavoritesList(sortByCity([...newFavoritesList]))
+    newExploreList = sortByCity(newExploreList)
+    newFavoritesList = sortByCity(newFavoritesList)
+    localStorage.setItem('RESA_explore', JSON.stringify(newExploreList))
+    localStorage.setItem('RESA_favorites', JSON.stringify(newFavoritesList))
+    setExploreList([...newExploreList])
+    setFavoritesList([...newFavoritesList])
     setIsLoading2(false)
   }
 
@@ -150,7 +152,7 @@ const Home = ({}) => {
                 : null
                 }
                 </>
-              : <Info/>
+              : isLoading? <Loading/>: <Info/>
             }
           </>
         }
