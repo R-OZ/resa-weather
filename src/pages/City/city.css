@@ -55,6 +55,7 @@
         z-index: 1.1;
         background: rgba(255, 255, 255, 0.675);        
         padding: 10px 10px;
+        height: 60px;
         border-radius: 10px;
         /* display: flex; */
         display: grid;

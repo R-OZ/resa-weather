@@ -1,15 +1,14 @@
 import React from 'react'
 import './notesCard.css'
 
-const NotesCard = ({id, title, body}) => {
+const NotesCard = ({note_obj, handleClick}) => {
   return (
     <div className="notes-card">
         <p className="notes-card-title">
-            Tuesday Plans
+           <span id='notes-card-title1'> {note_obj.title}</span>
         </p>
         <div className="notes-card-body">
-            If it does not rain, I will go visit all my friends
-            and go to the movies. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium nulla dignissimos odio. Deserunt vero dolor cupiditate nobis. Eius, expedita blanditiis tenetur eligendi quis repellat velit libero harum quibusdam magni ullam.
+            {note_obj.body}
         </div>
     </div>
     )

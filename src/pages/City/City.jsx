@@ -102,7 +102,7 @@ const City = () => {
         {
           currentCity2.notes?
             <>
-              <Notes />
+              <Notes notesList={currentCity2.notes}/>
               <img src={favorites} alt="favorites?" id="city-fav-icon" />
             </>
           : null

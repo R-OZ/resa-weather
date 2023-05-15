@@ -6,6 +6,7 @@ import Favorites from "./pages/FavoritesExplore/Favorites";
 import Nav from "./components/Nav/Nav";
 import Search from "./components/Search/Search";
 import Explore from "./pages/FavoritesExplore/Explore"
+import Settings from './pages/Settings/Settings';
 import Context from "./Context";
 import NotFound from "./pages/NotFound/NotFound";
 import { useGlobalState } from "./Context";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/city" element={<City/>}/>
           <Route path="/favorites" element={<Favorites/>}/>
           <Route path="/explore" element={<Explore/>}/>
+          <Route path="/settings" element={<Settings/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
     </>

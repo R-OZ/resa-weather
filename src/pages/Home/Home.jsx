@@ -13,9 +13,6 @@ import { sortByCity } from '../../utilities/Sorter'
 
 
 const Home = ({}) => {
-  const num1=[1,2,3,4]
-  const num2=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-  var value = num1.length + num2.length
   
   const {exploreValue: [exploreList, setExploreList], geoLocationValue:[ geoLocation, setGeoLocation], favoritesValue:[favoritesList, setFavoritesList]} = useGlobalState()
   const [isLoading, setIsLoading] = useState(true)

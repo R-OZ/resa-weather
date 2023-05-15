@@ -42,10 +42,10 @@ const Nav = () => {
           <img src={favorites} alt="favorites-icon" id="menu-icon" />
           <span>Favorites</span>
         </NavLink>
-        <div className="nav-menu">
+        <NavLink to='/settings' onClick={closeMenu}  className="nav-menu">
           <img src={settings} alt="settings-icon" id="menu-icon" />
           <span>Settings</span>
-          </div>
+        </NavLink>
       </div>
     </>
   )

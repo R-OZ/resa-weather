@@ -2,7 +2,7 @@
     height: 260px; 
     /* background-color: red; */
     padding: 20px 0px;
-    font-weight: 500;
+    font-weight: 600;
 }
 #featured-city{
     width: fit-content;
@@ -15,6 +15,7 @@
     margin: auto;
     font-size: 15px;
     text-align: center;
+
 }
 .featured-temp-icon{
     margin-top: 20px;
@@ -45,7 +46,8 @@
     align-items: center;
     gap: 4px;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
+
 }
 #featured-icon{
     height: 18px;
@@ -59,6 +61,7 @@
     margin: auto;
     margin-top: 3px;
     font-size: 15px;
+    font-weight: 600;
 }
 .featured-date{
     width: 45%;

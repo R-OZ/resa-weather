@@ -1,0 +1,161 @@
+.settings{
+    background: linear-gradient(45deg, #1c92d2, #abaeae);
+    min-height: 100vh;
+    padding: 75px 20px 25px 20px;
+}
+.settings-title{
+    text-align: center;
+    font-weight: 500;
+    font-size: 22px;
+}
+.settings-theme{
+    margin: auto;
+    max-width: 600px;
+    margin-top: 25px;
+    padding: 10px 15px;
+    border-radius: 12px;
+    background-color: rgba(193, 209, 255, 0.462);
+}
+.settings-theme-head{
+    display: flex;
+    gap: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom:2px solid white ;
+}
+.settings-theme-icon{
+    height: 22px;
+}
+.settings-theme-body{
+    margin-top: 5px;
+}
+#theme-title{
+    font-size: 17px;
+}
+.themes{
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 380px ;
+    flex-wrap: wrap;
+    row-gap: 16px;
+}
+.theme{
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    cursor: pointer;
+}
+.theme input{
+    position: absolute;
+    opacity: 0;
+}
+.theme:hover input ~ #theme-name, .theme input:checked ~ #theme-name{
+    color: white;
+}
+.theme:hover input ~ .theme-box{
+    border: 3px solid white;
+}
+.theme input:checked ~ .theme-box{
+    border: 3px solid white;
+}
+
+.theme-box{
+    width: 90px;
+    height: 60px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.semi-box {
+    position: relative;
+}
+.semi-box::after{
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0;
+	border-top: 60px solid transparent;
+	border-left: 90px solid rgb(54, 25, 100) ;
+    border-radius: 6px;
+}
+.theme input:checked ~ .semi-box::after, .theme:hover .semi-box::after{
+    border-top: 56px solid transparent;
+	border-left: 86px solid rgb(54, 25, 100)
+}
+
+.settings-buttons{
+    margin: auto;
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    width: fit-content;
+    flex-wrap: wrap;
+    
+}
+.settings-reset{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    width: 140px;
+    justify-content: center;
+    padding: 8px 0px;
+    border: 2px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgba(26, 26, 26, 0.033);
+}
+.settings-reset:hover{
+    color: white;
+}
+#settings-reset-icon{
+    height: 28px;
+    display: block
+}
+.settings-confirm{
+    margin: auto;
+    max-width: 450px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    border-radius: 12px;
+    display: none;
+    background-color: rgba(193, 209, 255, 0.462);
+}
+.-reveal{
+    display: block;
+}
+#confirm-title{
+    font-weight: 500;
+    text-align: center;
+    font-size: 17px;
+}
+#confirm-caption{
+    text-align: center;
+}
+.confirm-buttons{
+    margin-top: 15px;
+    display: flex;
+    gap:15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.confirm-button{
+    padding: 8px 0;
+    cursor: pointer;
+    width: 70px;
+    text-align: center;
+    font-weight: 500;
+    border: 2px solid white;
+    border-radius: 8px;
+    background-color: rgba(47, 47, 47, 0.078);
+}
+.confirm-button:hover{
+    color: white;
+}
