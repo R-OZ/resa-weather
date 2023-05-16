@@ -3,12 +3,9 @@ import './featured.css'
 import humidtyIcon from '../../assets/icons/humidity.png'
 import wind from '../../assets/icons/Wind.png'
 import { IconMapper } from '../../utilities/IconMapper'
-import { CityWeather } from '../../api/CityWeather'
-import { SearchCity } from '../../api/SearchCity'
 
 
 const Featured = ({city, description, temperature, high, low, windSpeed, humidty}) => {
-  // const x = IconMapper('cc')
   return (
     <div className='featured-container'>
       <p id="featured-city">{city}</p>

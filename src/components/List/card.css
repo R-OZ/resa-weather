@@ -17,6 +17,7 @@
     }
     #card-city{
         font-size: 22px;
+        font-weight: 600;
         white-space: nowrap; 
         overflow: hidden; /* Hide the horizontal overflow */
         text-overflow: ellipsis;
@@ -44,6 +45,7 @@
     #card-temp{
         font-size: 26px;
         text-align: right;
+        font-weight: 500;
     }
     #card-h-l{
         font-size: 14px;
@@ -69,14 +71,15 @@
         font-size: 20px;
     }
     #card-icon{
-        /* height: 40px;
-        width: auto; */
+        height: 40px;
+        width: auto;
         align-self: center;
     }
 
     #card-temp{
         text-align: center;
         font-size: 20px;
+        margin-bottom: 6px;
     }
     #card-h-l{
         text-align: center;

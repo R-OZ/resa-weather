@@ -1,4 +1,3 @@
-import React from 'react'
 import axios from 'axios'
 import { API_URL, API_KEY } from './constants/Constants'
 import { checkDay, getDayofWeek } from '../utilities/DateFormatter'
@@ -34,7 +33,7 @@ export const CityWeather = (city: string, notes=null) =>(
                         weather_code: day.condition.code,
                         weather_text: day.condition.text.toLowerCase(),
                         avg_visibility: Math.round(day.avgvis_km),
-                        max_wind: `${day.maxwind_kph}km/h`,
+                        max_wind: `${Math.round(day.maxwind_kph)}km/h`,
                         avg_humidity: Math.round(day.avghumidity),
                         uv: Math.round(day.uv)
                     })
@@ -51,6 +50,5 @@ export const CityWeather = (city: string, notes=null) =>(
     })
     .catch((err)=> {
         console.error(err)
-        return err.message
     })
 )

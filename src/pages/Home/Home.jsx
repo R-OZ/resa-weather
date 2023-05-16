@@ -18,18 +18,27 @@ const Home = ({}) => {
   const [isLoading, setIsLoading] = useState(true)
   const [isLoading2, setIsLoading2] = useState(true)
   const [location, setLocation] = useState(null)
+  const [message, setMessage] = useState(null)
   
   const fetchWeather = async()=>{
     if(geoLocation!=='-1' && geoLocation){
       if(navigator.onLine){
-        setIsLoading(true)
-        console.log(`this geoLocation==> ${geoLocation}`)
-        let res = await CityWeather(geoLocation.coord);
-        localStorage.setItem('RESA_location', JSON.stringify(res));
-        setLocation({...res});
-        console.log('Online-RESA_location')
-        console.log(res)
-        setIsLoading(false)
+        try {
+          setIsLoading(true)
+          console.log(`this geoLocation==> ${geoLocation}`)
+          let res = await CityWeather(geoLocation.coord);
+          localStorage.setItem('RESA_location', JSON.stringify(res));
+          setLocation({...res});
+          console.log('Online-RESA_location')
+          console.log(res)
+        } 
+        catch (error) {
+          setMessage(error)
+          console.log(error)
+        }
+        finally{
+          setIsLoading(false)
+        }
       }
       else{
         setLocation({...geoLocation})
@@ -43,13 +52,23 @@ const Home = ({}) => {
       var randomIndex = Math.floor(Math.random()*(exploreList.length+favoritesList.length))
       const bothList = [...exploreList, ...favoritesList]
       if (typeof exploreList[0]== "string"){
-        let res = await CityWeather(exploreList[randomIndex])
-        setLocation({...res})
+        try {
+          let res = await CityWeather(exploreList[randomIndex])
+          setLocation({...res})
+        } 
+        catch (error) {
+          setMessage(error)
+        }
       }
       else{
         if(navigator.onLine){
-          let res = await CityWeather(bothList[randomIndex].coord)
-          setLocation({...res})
+          try {
+            let res = await CityWeather(bothList[randomIndex].coord)
+            setLocation({...res})  
+          } 
+          catch (error) {
+            setMessage(error)
+          }
         }
         else{
           setLocation({...bothList[randomIndex]})
@@ -69,20 +88,30 @@ const Home = ({}) => {
     let newFavoritesList = []
     setIsLoading2(true)
     if (typeof exploreList[0] === "string"){
-      for (var i = 0; i<exploreList.length; i++){
-        let res = await CityWeather(exploreList[i])
-        newExploreList.push(res)
+      try {
+        for (let i = 0; i<exploreList.length; i++){
+          let res = await CityWeather(exploreList[i])
+          newExploreList.push(res)
+        }
+      } 
+      catch (error) {
+        setMessage(error)
       }
     }
     else{
       if(navigator.onLine){
-        for (var i =0; i<exploreList.length; i++){
-          let res = await CityWeather(exploreList[i].coord)
-          newExploreList.push(res)
-        }
-        for (var j =0; j<favoritesList.length; j++){
-          let res2 = await CityWeather(favoritesList[j].coord, favoritesList[j].notes)
-          newFavoritesList.push(res2)
+        try {
+          for (let i =0; i<exploreList.length; i++){
+            let res = await CityWeather(exploreList[i].coord)
+            newExploreList.push(res)
+          }
+          for (let j =0; j<favoritesList.length; j++){
+            let res2 = await CityWeather(favoritesList[j].coord, favoritesList[j].notes)
+            newFavoritesList.push(res2)
+          }   
+        } 
+        catch (error) {
+          setMessage(error)
         }
       }
       else{
@@ -112,18 +141,21 @@ const Home = ({}) => {
           :
             <>
             {
-              location?
-                <Featured 
-                  city={location.name}
-                  description={location.weather_text}
-                  temperature={location.temp}
-                  high={location.high_temp}
-                  low={location.low_temp}
-                  windSpeed={location.wind}
-                  humidty={location.humidity}
-                />
+              message== null?
+                location?
+                  <Featured 
+                    city={location.name}
+                    description={location.weather_text}
+                    temperature={location.temp}
+                    high={location.high_temp}
+                    low={location.low_temp}
+                    windSpeed={location.wind}
+                    humidty={location.humidity}
+                  />
+                :
+                  <Asleep />
               :
-              <Asleep />
+                <h1>{message}</h1>
             }
           </>
         }
@@ -135,21 +167,24 @@ const Home = ({}) => {
           : 
           <>
             {
-              location?
-                <>
-                {
-                  favoritesList.length>0? 
-                    <List id="favorites" cities={[...favoritesList]} /> 
-                : null
-                }
-                
-                {
-                  exploreList.length>0? 
-                    <List id="explore" cities={[...exploreList]} /> 
-                : null
-                }
-                </>
-              : isLoading? <Loading/>: <Info/>
+              message== null?
+                location?
+                  <>
+                  {
+                    favoritesList.length>0? 
+                      <List id="favorites" cities={[...favoritesList]} /> 
+                  : null
+                  }
+                  
+                  {
+                    exploreList.length>0? 
+                      <List id="explore" cities={[...exploreList]} /> 
+                  : null
+                  }
+                  </>
+                : isLoading? <Loading/>: <Info/>
+              :
+                <h1>{message}</h1>
             }
           </>
         }

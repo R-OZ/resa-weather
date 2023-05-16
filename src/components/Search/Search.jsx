@@ -45,8 +45,8 @@ const Search = () => {
       clearSearch();
       setGlobalLoading(true)
       // check if the city already exists in favorites list or the explore list
-      const existingFavIndex = favoritesList.findIndex(item => item.coord === obj.coord)
-      const existingExpIndex = exploreList.findIndex(item => item.coord === obj.coord)
+      const existingFavIndex = favoritesList.findIndex(item => (item.name===obj.name && item.country===obj.country))
+      const existingExpIndex = exploreList.findIndex(item =>  (item.name===obj.name && item.country===obj.country))
       if(existingFavIndex === -1 && existingExpIndex === -1){
         //if city does not exist in both lists, then add the new city
         let res = await CityWeather(obj.coord)

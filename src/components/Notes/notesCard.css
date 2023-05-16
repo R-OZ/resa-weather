@@ -7,7 +7,7 @@
 }
 .notes-card-title{
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     padding-bottom: 6px;
     border-bottom: 1px solid rgb(125, 125, 125);
     width: 100%;
@@ -24,6 +24,7 @@
 .notes-card-body{
     margin-top: 10px;
     font-size: 16px;
+    font-weight: 500;
     display: -webkit-box; /* Set the display to a box layout */
     -webkit-box-orient: vertical; /* Set the box layout to vertical */
     -webkit-line-clamp: 2; /* Set the maximum number of lines to 2 */

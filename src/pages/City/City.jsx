@@ -1,22 +1,17 @@
-import React, {useState, useEffect,} from 'react'
+import React from 'react'
 import {useNavigate} from 'react-router-dom'
 import { IconMapper } from '../../utilities/IconMapper'
-import { CityWeather } from '../../api/CityWeather'
 import './city.css'
-import clock from '../../assets/icons/clock.png'
 import calendar from '../../assets/icons/calendar.png'
 import uvIcon from '../../assets/icons/ultraviolet.png'
 import uv2 from '../../assets/icons/ultraviolet2.png'
-import uv3 from '../../assets/icons/ultraviolet3.png'
 import pressureIcon from '../../assets/icons/pressure.png'
 import visibility from '../../assets/icons/eye2.png'
 import arrow from '../../assets/icons/arrow.png'
 import Featured from '../../components/Featured/Featured'
 import Notes from '../../components/Notes/Notes'
-import notes from '../../assets/icons/notes.png'
 import favorites from '../../assets/icons/love.png'
 import temperature from '../../assets/icons/temperature.png'
-import temperature2 from '../../assets/icons/temperature2.png'
 import windIcon from '../../assets/icons/wind2.png'
 import visibility2 from '../../assets/icons/visibility2.png'
 import humidity2 from '../../assets/icons/humidity2.png'
@@ -42,7 +37,7 @@ const CityHourCard =({idx, day, temp, weather, humidity, wind, visibility, uv})=
         <p id="city-hour-time">{day}</p>
         <img src={IconMapper(weather)} alt="" id="city-hour-icon" />
         <p id="city-hour-temp">{temp}&deg;</p>
-        <p id="city-hour-weather">{weather}</p>
+        <p id="city-hour-weather" className='city-hour-weather-desc'>{weather}</p>
         <img src={arrow} id={`arrow${idx}`} alt="" className="city-hour-arrow" />
         
       </div>
@@ -65,7 +60,7 @@ const CityWeatherIcon =({image, text, detail})=>{
       <img src={image} alt="" className='city-weather-icon' />
       <div className="city-weather-txt">
         <p id="city-weather-title">{text}</p>
-        <p id='city-weather-desc'>{detail}{image==temperature?<span>&deg;</span>:''}</p>
+        <p id='city-weather-desc'>{detail}{image===temperature?<span>&deg;</span>:''}</p>
       </div>
     </div>
   )
@@ -81,9 +76,7 @@ const handleSelect = (idx)=>{
 }
 
 const City = () => {
-  const num = [1,2,3,4,5,6]
-  const {globalLoadingValue:[globalLoading, setGlobalLoading], currentCityValue:[currentCity, setcurrentCity], geoLocationValue:[geoLocation, setGeoLocation]} = useGlobalState()
-  const [isLoading, setIsLoading] = useState(true)
+  const {globalLoadingValue:[globalLoading], currentCityValue:[currentCity], geoLocationValue:[geoLocation]} = useGlobalState()
   const browse = useNavigate()
   var currentCity2 = currentCity ?? (geoLocation === '-1' ? false : geoLocation);
   

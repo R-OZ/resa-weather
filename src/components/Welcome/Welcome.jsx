@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import './welcome.css'
 import Smiley from '../../assets/aminations/Smiley'
 import favorites from '../../assets/icons/love.png'
@@ -22,6 +22,7 @@ const WelcomeIcon =({image, title, body})=>{
 }
 const Welcome = () => {
   const navigate = useNavigate()
+  const [message, setMessage] = useState(null)
   const {globalLoadingValue:[globalLoading, setGlobalLoading], geoLocationValue:[geoLocation, setGeoLocation], currentCityValue:[currentCity, setCurrentCity]} = useGlobalState()
   
   const getLocation = ()=>{
@@ -33,7 +34,7 @@ const Welcome = () => {
             setGeoLocation(res)
             navigate('/city')
           })
-          .catch(err=> console.log(err))
+          .catch(err=> {console.log(err); setMessage(err)})
       },
       error => {
         console.log(error.message);
@@ -67,10 +68,17 @@ const Welcome = () => {
                 Features
             </p>
             <div className="welcome-features">
-                <WelcomeIcon image={explore} title={'Explore'} body={"View the weather of 15 largest cities by default"} />
-                <WelcomeIcon image={favorites} title={'Favorites'} body={'Personalize your list of your favorites cities'} />
-                <WelcomeIcon image={notes} title={'Note'} body={'Manage your notes for each of your favorite cities'} />
-                <WelcomeIcon image={theme} title={'Dynamic Themes'} body={'Theme changes day/night in respect to the city'} />
+                {
+                  message===null?
+                  <>
+                    <WelcomeIcon image={explore} title={'Explore'} body={"View the weather of 15 largest cities by default"} />
+                    <WelcomeIcon image={favorites} title={'Favorites'} body={'Personalize your list of your favorites cities'} />
+                    <WelcomeIcon image={notes} title={'Note'} body={'Manage your notes for each of your favorite cities'} />
+                    <WelcomeIcon image={theme} title={'Dynamic Themes'} body={'Theme changes day/night in respect to the city'} />
+                  </>
+                  : <h1>{message}</h1>
+                
+                }
 
             </div>
         </div>

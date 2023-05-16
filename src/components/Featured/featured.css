@@ -8,6 +8,7 @@
     width: fit-content;
     margin: auto;
     font-size: 25px;
+    font-weight: 600;
   
 }
 #featured-weather{
@@ -15,6 +16,7 @@
     margin: auto;
     font-size: 15px;
     text-align: center;
+    font-weight: 600;
 
 }
 .featured-temp-icon{

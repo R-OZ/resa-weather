@@ -3,6 +3,7 @@
         background: linear-gradient(45deg, #1c92d2, #abaeae);
         min-height: 100vh;
         padding: 60px 20px 25px 20px;
+        font-weight: 500;
 
     }
     #city-fav-icon{
@@ -23,14 +24,14 @@
     #city-hour-title{
         padding-bottom: 8px;
         border-bottom: 1px solid white;
-        font-size: 18px;
-        font-weight: 500;
+        font-size: 16px;
+        font-weight: 600;
         display: flex;
         gap: 5px;
         align-items: center;
     }
     #city-icon{
-        height: 17px;
+        width: 17px;
     }
     .city-hour-body{
         margin-top: 10px;
@@ -67,17 +68,26 @@
     }
     
     #city-hour-time{
-        font-size: 20px;
+        font-size: 18px;
+        font-weight: 600;
     }
     #city-hour-icon{
         width: 35px;
     }
     #city-hour-temp{
         font-size: 16px;
+        font-weight: 500;
     }
     #city-hour-weather{
-        font-size: 15px;
-        text-align: center;
+        font-size: 14px;
+        text-align: center;  
+    }
+    .city-hour-weather-desc{
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Limit to 3 lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .city-hour-arrow{
         height: 20px;
@@ -129,9 +139,10 @@
     }
     #city-hour-weather-title{
         font-size: 14px;
+        font-weight: 600;
     }
     .city-hour-weather-txt>span{
-        font-weight: 500;
+        font-weight: 700;
         font-size: 14px;
     }
 
@@ -157,7 +168,7 @@
     }
     #city-weather-title{
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 600;
         text-align: center;
     }
     #city-weather-desc{
@@ -170,8 +181,9 @@
         right: 25vw;
     }
     .city-hour{
-        width: 55vw;
-        max-width: fit-content;
+        width: 53vw;
+        max-width: 800px;
+        /* background-color: red; */
     }
     .city-hour-body{
         display: grid;
@@ -180,6 +192,10 @@
 
     .city-hour-card{
         gap: 10px;
+    }
+    #city-hour-weather{
+        font-size: 13.5px;
+        text-align: center;  
     }
     #city-hour-time{
         font-size: 17px;
