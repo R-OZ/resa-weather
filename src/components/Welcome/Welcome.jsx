@@ -73,7 +73,7 @@ const Welcome = () => {
                   <>
                     <WelcomeIcon image={explore} title={'Explore'} body={"View the weather of 15 largest cities by default"} />
                     <WelcomeIcon image={favorites} title={'Favorites'} body={'Personalize your list of your favorites cities'} />
-                    <WelcomeIcon image={notes} title={'Note'} body={'Manage your notes for each of your favorite cities'} />
+                    <WelcomeIcon image={notes} title={'Note'} body={'Manage your notes for each of your listed cities'} />
                     <WelcomeIcon image={theme} title={'Dynamic Themes'} body={'Theme changes day/night in respect to the city'} />
                   </>
                   : <h1>{message}</h1>

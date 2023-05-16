@@ -15,7 +15,7 @@ const Notes = ({notesList}) => {
     //remember you need to consider the state of the text in the search bar in mobile version so you can use that state to decided a display none for the notes-icon so you wont have icon clashing there.
     const [isOpen, setIsOpen] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
-    const {searchValue, windowWidthValue, favoritesValue:[favoritesList, setFavoritesList], currentCityValue:[currentCity, setCurrentCity] } = useGlobalState()
+    const {searchValue, windowWidthValue, favoritesValue:[favoritesList, setFavoritesList], exploreValue: [exploreList, setExploreList], currentCityValue:[currentCity, setCurrentCity] } = useGlobalState()
     const [searchText, setSearchText] = searchValue
     const [currentNote, setCurrentNote] = useState()
     const [openEditor, setOpenEditor] = useState(false)
@@ -29,10 +29,19 @@ const Notes = ({notesList}) => {
         if(index !== -1){
             newCurrentCity.notes.splice(index,1)
             const favCityIndex = favoritesList.findIndex(item=> item.coord === currentCity.coord)
-            let newFavoritesList = _.cloneDeep(favoritesList)
-            newFavoritesList.splice(favCityIndex, 1, newCurrentCity)
-            setFavoritesList(newFavoritesList)
-            localStorage.setItem('RESA_favorites', JSON.stringify(newFavoritesList))
+            const expCityIndex = exploreList.findIndex(item => item.coord === currentCity.coord)
+            if(expCityIndex===-1){
+                let newFavoritesList = _.cloneDeep(favoritesList)
+                newFavoritesList.splice(favCityIndex, 1, newCurrentCity)
+                setFavoritesList(newFavoritesList)
+                localStorage.setItem('RESA_favorites', JSON.stringify(newFavoritesList))
+            }
+            else{
+                let newExploreList = _.cloneDeep(exploreList)
+                newExploreList.splice(expCityIndex,1,newCurrentCity)
+                setExploreList(newExploreList)
+                localStorage.setItem('RESA_explore', JSON.stringify(newExploreList))
+            }
             setCurrentCity(newCurrentCity)
             localStorage.setItem('RESA_currentCity', JSON.stringify(newCurrentCity))
         }

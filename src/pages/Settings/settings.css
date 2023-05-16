@@ -100,6 +100,9 @@
     flex-wrap: wrap;
     
 }
+a{
+    text-decoration: none;
+}
 .settings-reset{
     display: flex;
     align-items: center;
@@ -111,6 +114,9 @@
     border: 2px solid white;
     border-radius: 8px;
     cursor: pointer;
+    color: black;
+    text-decoration: none;
+
     background-color: rgba(26, 26, 26, 0.033);
 }
 .settings-reset:hover{
@@ -119,6 +125,9 @@
 #settings-reset-icon{
     height: 28px;
     display: block
+}
+#settings-button-txt{
+    text-decoration:none ;
 }
 .settings-confirm{
     margin: auto;

@@ -1,7 +1,7 @@
 import React from 'react'
 import './notesCard.css'
 
-const NotesCard = ({note_obj, handleClick}) => {
+const NotesCard = ({note_obj}) => {
   return (
     <div className="notes-card">
         <p className="notes-card-title">

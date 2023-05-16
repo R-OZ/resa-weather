@@ -10,7 +10,7 @@ import _ from 'lodash'
 
 const Note = ({note_obj, openEditor, setOpenEditor}) => {
     //please beware that the id for both the input and the texarea per note must be unique, to avoid html issues
-    const {favoritesValue: [favoritesList, setFavoritesList], currentCityValue:[currentCity, setCurrentCity]} = useGlobalState()
+    const {favoritesValue: [favoritesList, setFavoritesList], exploreValue: [exploreList, setExploreList], currentCityValue:[currentCity, setCurrentCity]} = useGlobalState()
     const [note, setNote] = useState({
         id: note_obj.id,
         title: note_obj.title,
@@ -32,11 +32,24 @@ const Note = ({note_obj, openEditor, setOpenEditor}) => {
             else{
                 newCurrentCity.notes.unshift(obj)
             }
+            //check which list the city exists in, either explore or fav
             const favCityIndex = favoritesList.findIndex(item=> item.coord === currentCity.coord)
-            let newFavoritesList = _.cloneDeep(favoritesList)
-            newFavoritesList.splice(favCityIndex, 1, newCurrentCity)
-            setFavoritesList(newFavoritesList)
-            localStorage.setItem('RESA_favorites', JSON.stringify(newFavoritesList))
+            const expCityIndex = exploreList.findIndex(item => item.coord === currentCity.coord)
+            if (expCityIndex == -1){
+                //does not exist in explore then must exist in fav
+                let newFavoritesList = _.cloneDeep(favoritesList)
+                newFavoritesList.splice(favCityIndex, 1, newCurrentCity)
+                setFavoritesList(newFavoritesList)
+                localStorage.setItem('RESA_favorites', JSON.stringify(newFavoritesList))
+                
+            }
+            else{
+                //exists in explore
+                let newExploreList = _.cloneDeep(exploreList)
+                newExploreList.splice(expCityIndex,1,newCurrentCity)
+                setExploreList(newExploreList)
+                localStorage.setItem('RESA_explore', JSON.stringify(newExploreList))
+            }
             setCurrentCity(newCurrentCity)
             localStorage.setItem('RESA_currentCity', JSON.stringify(newCurrentCity))
         }
@@ -48,10 +61,19 @@ const Note = ({note_obj, openEditor, setOpenEditor}) => {
         if(exisitingIndex !== -1){
             newCurrentCity.notes.splice(exisitingIndex, 1)
             const favCityIndex = favoritesList.findIndex(item=> item.coord === currentCity.coord)
-            let newFavoritesList = _.cloneDeep(favoritesList)
-            newFavoritesList.splice(favCityIndex, 1, newCurrentCity)
-            setFavoritesList(newFavoritesList)
-            localStorage.setItem('RESA_favorites', JSON.stringify(newFavoritesList))
+            const expCityIndex = exploreList.findIndex(item => item.coord === currentCity.coord)
+            if(expCityIndex===-1){
+                let newFavoritesList = _.cloneDeep(favoritesList)
+                newFavoritesList.splice(favCityIndex, 1, newCurrentCity)
+                setFavoritesList(newFavoritesList)
+                localStorage.setItem('RESA_favorites', JSON.stringify(newFavoritesList))
+            }
+            else{
+                let newExploreList = _.cloneDeep(exploreList)
+                newExploreList.splice(expCityIndex,1,newCurrentCity)
+                setExploreList(newExploreList)
+                localStorage.setItem('RESA_explore', JSON.stringify(newExploreList))
+            }
             setCurrentCity(newCurrentCity)
             localStorage.setItem('RESA_currentCity', JSON.stringify(newCurrentCity))
         }

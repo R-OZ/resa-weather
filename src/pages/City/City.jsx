@@ -17,6 +17,8 @@ import visibility2 from '../../assets/icons/visibility2.png'
 import humidity2 from '../../assets/icons/humidity2.png'
 import Loading from '../../components/Loading/Loading'
 import { useGlobalState } from '../../Context'
+import _ from 'lodash'
+
 
 const HourCardIcon =({image, title, data})=>{
   return(
@@ -76,9 +78,10 @@ const handleSelect = (idx)=>{
 }
 
 const City = () => {
-  const {globalLoadingValue:[globalLoading], currentCityValue:[currentCity], geoLocationValue:[geoLocation]} = useGlobalState()
+  const {globalLoadingValue:[globalLoading], currentCityValue:[currentCity], geoLocationValue:[geoLocation], favoritesValue:[favoritesList]} = useGlobalState()
   const browse = useNavigate()
-  var currentCity2 = currentCity ?? (geoLocation === '-1' ? false : geoLocation);
+  const currentCity2 = currentCity ?? (geoLocation === '-1' ? false : geoLocation);
+  const isFavorites = favoritesList.findIndex(item=> (item.name === currentCity2.name && item.country === currentCity2.country)) //check if city is fav to show fav-icon(heart)
   
   if(currentCity2 === false){
     browse('/current-city-not-set')
@@ -96,7 +99,7 @@ const City = () => {
           currentCity2.notes?
             <>
               <Notes notesList={currentCity2.notes}/>
-              <img src={favorites} alt="favorites?" id="city-fav-icon" />
+              {isFavorites !== -1? <img src={favorites} alt="favorites?" id="city-fav-icon" />: null}
             </>
           : null
         }

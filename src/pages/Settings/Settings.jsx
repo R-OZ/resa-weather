@@ -1,10 +1,9 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './settings.css'
 import theme from '../../assets/icons/theme.png'
 import feedback from '../../assets/icons/feedback.png'
 import reset from '../../assets/icons/reset.png'
 import { useGlobalState } from '../../Context'
-import { useNavigate } from 'react-router-dom'
 
 
 const ThemeOption =({name, color, checkValue, setCheckValue})=>{
@@ -20,15 +19,14 @@ const ThemeOption =({name, color, checkValue, setCheckValue})=>{
 const Settings = () => {
     const [openConfirm, setOpenConfirm] = useState(false)
     const [checkValue, setCheckValue] = useState('Day')
-    const browse = useNavigate()
-    // const {} = useGlobalState()
+    const {searchValue:[searchText, setSearchText],favoritesValue: [favoritesList, setFavoritesList],exploreValue: [exploreList, setExploreList],currentCityValue: [currentCity, setCurrentCity],} = useGlobalState()
 
+    const [isLocalStorage, setIsLocalStorage] = useState(localStorage.getItem('RESA_location')) //checks if this key is  no longer available to prove reset
     const resetRESA = ()=>{
         localStorage.removeItem('RESA_location')
         localStorage.removeItem('RESA_explore')
         localStorage.removeItem('RESA_favorites')
         localStorage.removeItem('RESA_currentCity')
-        browse('/')
         window.location.reload()
     }
   return (
@@ -57,12 +55,14 @@ const Settings = () => {
                     Reset RESA
                 </p>
             </div>
+            <a href='https://forms.gle/9pFCSyeV43qLYTtG8' target='_blank' rel="noreferrer">
             <div className="settings-reset">
                 <img src={feedback} alt="reset-icon" id="settings-reset-icon" />
                 <p id="settings-button-txt">
                     Feedback
                 </p>
             </div>
+            </a>
         </div>
 
         <div className={`settings-confirm ${openConfirm? '-reveal': ''}`}>
@@ -75,6 +75,16 @@ const Settings = () => {
                 <div onClick={()=>setOpenConfirm(false)} className="confirm-button">No</div>
             </div>
         </div>
+
+        {isLocalStorage===null? 
+            <div className="settings-confirm -reveal">
+                <p id='confirm-title'>Reset Successful</p>
+                <p id="confirm-caption" style={{marginTop: '5px', fontSize:'11px'}}>Psst...incase you have not given RESA your location permissions, 
+                    navigate to your browser location permissions and reset that too. Then you can go to your homepage on the nav menu.</p>
+            </div>
+            : null
+        }
+
 
     </div>
   )

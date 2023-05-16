@@ -33,8 +33,8 @@ const Home = ({}) => {
           console.log(res)
         } 
         catch (error) {
-          setMessage(error)
-          console.log(error)
+          setMessage(error.message)
+          console.log(`ERROR MESSAGE is==> ${error}`)
         }
         finally{
           setIsLoading(false)
@@ -57,7 +57,7 @@ const Home = ({}) => {
           setLocation({...res})
         } 
         catch (error) {
-          setMessage(error)
+          setMessage(error.message)
         }
       }
       else{
@@ -67,7 +67,7 @@ const Home = ({}) => {
             setLocation({...res})  
           } 
           catch (error) {
-            setMessage(error)
+            setMessage(error.message)
           }
         }
         else{
@@ -90,19 +90,21 @@ const Home = ({}) => {
     if (typeof exploreList[0] === "string"){
       try {
         for (let i = 0; i<exploreList.length; i++){
-          let res = await CityWeather(exploreList[i])
+          let res = await CityWeather(exploreList[i], [])
           newExploreList.push(res)
         }
       } 
       catch (error) {
-        setMessage(error)
+        setMessage(error.message)
+        console.log(`ERROR MESSAGE is==> ${error}`)
+
       }
     }
     else{
       if(navigator.onLine){
         try {
           for (let i =0; i<exploreList.length; i++){
-            let res = await CityWeather(exploreList[i].coord)
+            let res = await CityWeather(exploreList[i].coord, exploreList[i].notes)
             newExploreList.push(res)
           }
           for (let j =0; j<favoritesList.length; j++){
@@ -111,7 +113,8 @@ const Home = ({}) => {
           }   
         } 
         catch (error) {
-          setMessage(error)
+          setMessage(error.message)
+          console.log(`ERROR MESSAGE is==> ${error}`)
         }
       }
       else{
@@ -155,7 +158,7 @@ const Home = ({}) => {
                 :
                   <Asleep />
               :
-                <h1>{message}</h1>
+                <h1 style={{textAlign:"center", color:'red', marginTop: '20px'}}>{message}</h1>
             }
           </>
         }
@@ -184,7 +187,7 @@ const Home = ({}) => {
                   </>
                 : isLoading? <Loading/>: <Info/>
               :
-                <h1>{message}</h1>
+                <h2 style={{textAlign:"center", color:'red', marginTop: '20px'}}>{message}</h2>
             }
           </>
         }

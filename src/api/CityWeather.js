@@ -41,14 +41,7 @@ export const CityWeather = (city: string, notes=null) =>(
                 return acc
             },[])
         }
-        if (notes){
-            return ({...city_data, notes:notes})
-        }
-        else{
-            return (city_data)
-        }
+        if (notes){ return ({...city_data, notes:notes}) }
+        else{ return (city_data) }
     })
-    .catch((err)=> {
-        console.error(err)
-    })
-)
+    )

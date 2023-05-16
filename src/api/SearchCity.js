@@ -17,7 +17,4 @@ export const SearchCity = (search_text: string) => (
 
         return [...cities]
     })
-    .catch((err)=>{
-        console.error(err)
-    })
 )
