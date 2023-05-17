@@ -8,6 +8,7 @@
         background-color: rgba(193, 209, 255, 0.462);
         border-radius: 25px;
         border-radius: 30px;
+        color: black;
     }
 
     .list-title{
@@ -23,10 +24,9 @@
     #list-text{
         font-size: 16px;
         font-weight: 700;
-        /* color: red; */
         margin-right: auto;
     }
-    .list-edit-btn{
+    #list-edit-btn{
         background-color: rgba(255, 255, 255, 0.505);
         padding: 0px 10px;
         border-radius: 14px;

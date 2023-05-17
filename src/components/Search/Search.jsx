@@ -8,11 +8,12 @@ import { useGlobalState } from '../../Context'
 import { SearchCity } from '../../api/SearchCity'
 import { CityWeather } from '../../api/CityWeather'
 import { sortByCity } from '../../utilities/Sorter'
+import { styles } from '../../utilities/Styling'
 import _ from 'lodash'
 
 const Search = () => {
   //when searching, make sure before you go to a city page, check if that city is in favorites, then go to the city so it can show its notes
-  const {searchValue:[searchText,setSearchText], globalLoadingValue:[globalLoading, setGlobalLoading], favoritesValue:[favoritesList, setFavoritesList], currentCityValue:[currentCity, setCurrentCity], exploreValue:[exploreList, setExploreList]} = useGlobalState()
+  const {searchValue:[searchText,setSearchText], themeValue:[theme], bgColorValue:[bgColor], globalLoadingValue:[globalLoading, setGlobalLoading], favoritesValue:[favoritesList, setFavoritesList], currentCityValue:[currentCity, setCurrentCity], exploreValue:[exploreList, setExploreList]} = useGlobalState()
   const [isSearching, setIsSearching] = useState(false)
   const [searchResults, setSearchResults] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -21,6 +22,10 @@ const Search = () => {
   const searchRef = useRef()
   const pageURL = useLocation();
   var isOnFavoritesPage = pageURL.pathname==='/favorites'
+  var isOnCityPage = pageURL.pathname==='/city'
+
+  const searchResultsColor =  theme ==='Dynamic' ? (!isOnCityPage?  (bgColor==styles.day? 'black': 'white') : (currentCity?.isDay? 'black' : 'white')) : (theme==='Day'? 'black' : 'white')
+
 
   const fetchCities = async(txt)=>{
     setSearchText(txt)
@@ -153,8 +158,10 @@ const Search = () => {
             :
               errorMessage ===null?
                 searchResults?.map((item,idx)=>(
-                  <p key={idx} onClick={()=>handleClick(item)} className="search-results-item" style={{borderBottom: idx==searchResults?.length-1? '0px': '' }}>
-                  <span style={{fontWeight: 500}}>{item.name}</span>, {item.country}
+                  <p key={idx} onClick={()=>handleClick(item)} 
+                    className="search-results-item" 
+                    style={{color: searchResultsColor, borderBottom: idx==searchResults?.length-1? '0px': '' }}>
+                  <span  style={{fontWeight: 500}}>{item.name}</span>, {item.country}
                   </p>
                 ))
               :

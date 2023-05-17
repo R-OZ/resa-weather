@@ -12,7 +12,7 @@ export const CityWeather = (city: string, notes=null) =>(
             name: location.name,
             country: location.country,
             localtime_epoch: location.localtime_epoch,
-            isDay: checkDay(location.localtime_epoch),
+            isDay: checkDay(location.localtime),
             temp: Math.round(current.temp_c),
             weather_code: current.condition.code,
             weather_text: current.condition.text.toLowerCase(),

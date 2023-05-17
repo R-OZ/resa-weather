@@ -3,6 +3,7 @@
     /* background-color: red; */
     padding: 20px 0px;
     font-weight: 600;
+    color: inherit;
 }
 #featured-city{
     width: fit-content;

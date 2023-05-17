@@ -5,13 +5,19 @@ import done from '../../assets/icons/done.png'
 import remove from '../../assets/icons/delete.png'
 import Card from '../../components/List/Card'
 import { useGlobalState } from '../../Context'
+import { styles } from '../../utilities/Styling'
 
 const Explore = () => {
   const [isEditing, setIsEditing] = useState(false)
-  const {exploreValue:[exploreList, setExploreList]} = useGlobalState()
+  const {exploreValue:[exploreList, setExploreList], bgColorValue:[bgColor]} = useGlobalState()
 
   const editSwitch = () =>{
     setIsEditing(!isEditing)
+  }
+
+  const favStyles={
+    background: bgColor,
+    color:  bgColor==styles.day? 'black': 'white'
   }
 
   const removeItem = (index) => {
@@ -24,7 +30,7 @@ const Explore = () => {
   };
 
   return (
-    <div className='favorites'>
+    <div style={favStyles} className='favorites'>
       
       <img onClick={editSwitch} 
         src={isEditing? done : edit} 

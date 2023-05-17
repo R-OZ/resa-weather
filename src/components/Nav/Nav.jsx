@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useLocation} from 'react-router-dom'
 import './nav.css'
 import Hamburger from './Hamburger/Hamburger'
 import home from '../../assets/icons/home.png'
@@ -7,13 +7,25 @@ import search from '../../assets/icons/search2.png'
 import favorites from '../../assets/icons/love.png'
 import settings from '../../assets/icons/settings.png'
 import { useGlobalState } from '../../Context'
+import { styles } from '../../utilities/Styling'
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const {windowWidthValue} = useGlobalState();
+  const {windowWidthValue, bgColorValue:[bgColor], themeValue:[theme], currentCityValue:[currentCity]} = useGlobalState();
+  const pageURL = useLocation();
+  var isOnCityPage = pageURL.pathname==='/city'
+
 
   const closeMenu =()=>{
     setIsOpen(false);
+  }
+  const navStyles ={
+    background: theme ==='Dynamic' ? 
+        (!isOnCityPage? bgColor : (currentCity?.isDay? styles.day : styles.night))
+      : (theme==='Day'? styles.day : styles.night),
+    color: theme ==='Dynamic' ? 
+        (!isOnCityPage?  (bgColor==styles.day? 'black': 'white') : (currentCity?.isDay? 'black' : 'white')) 
+      : theme==='Day'? 'black' : 'white'
   }
   
   useEffect(() => {
@@ -33,7 +45,7 @@ const Nav = () => {
       <div className={`nav-cover ${isOpen? 'show': ''}`}></div>
       
       
-      <div className={`nav-drawer ${isOpen? "move":""}`}>
+      <div style={navStyles} className={`nav-drawer ${isOpen? "move":""}`}>
         <NavLink to='/' onClick={closeMenu} className="nav-menu">
           <img src={home} alt="home-icon" id="menu-icon" />
           <span>Home</span>

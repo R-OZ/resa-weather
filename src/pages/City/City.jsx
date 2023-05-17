@@ -18,6 +18,7 @@ import humidity2 from '../../assets/icons/humidity2.png'
 import Loading from '../../components/Loading/Loading'
 import { useGlobalState } from '../../Context'
 import _ from 'lodash'
+import { styles } from '../../utilities/Styling'
 
 
 const HourCardIcon =({image, title, data})=>{
@@ -78,7 +79,7 @@ const handleSelect = (idx)=>{
 }
 
 const City = () => {
-  const {globalLoadingValue:[globalLoading], currentCityValue:[currentCity], geoLocationValue:[geoLocation], favoritesValue:[favoritesList]} = useGlobalState()
+  const {globalLoadingValue:[globalLoading], themeValue:[theme], currentCityValue:[currentCity], geoLocationValue:[geoLocation], favoritesValue:[favoritesList]} = useGlobalState()
   const browse = useNavigate()
   const currentCity2 = currentCity ?? (geoLocation === '-1' ? false : geoLocation);
   const isFavorites = favoritesList.findIndex(item=> (item.name === currentCity2.name && item.country === currentCity2.country)) //check if city is fav to show fav-icon(heart)
@@ -86,15 +87,20 @@ const City = () => {
   if(currentCity2 === false){
     browse('/current-city-not-set')
   }
+
+  const cityStyles = {
+    background: theme==='Dynamic'? (currentCity2.isDay? styles.day : styles.night) : (theme==='Day'? styles.day: styles.night),
+    color: theme==='Dynamic'? (currentCity2.isDay? 'black': 'white') : (theme==='Day'? 'black' : 'white')
+  }
   return (
     <>
     {
       globalLoading? 
-      <div className='city'>
+      <div style={cityStyles} className='city'>
           <Loading/>
       </div>
     :
-      <div className='city'>
+      <div style={cityStyles} className='city'>
         {
           currentCity2.notes?
             <>

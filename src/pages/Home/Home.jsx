@@ -3,23 +3,54 @@ import './home.css'
 import Info from '../../components/Info/Info'
 import List from '../../components/List/List'
 import Featured from '../../components/Featured/Featured'
-import explore from '../../assets/icons/explore.png'
-import favorite from '../../assets/icons/love.png'
 import Asleep from '../../assets/aminations/Asleep'
 import { useGlobalState } from '../../Context'
 import { CityWeather } from '../../api/CityWeather'
 import Loading from '../../components/Loading/Loading'
 import { sortByCity } from '../../utilities/Sorter'
+import { styles } from '../../utilities/Styling'
 
 
-const Home = ({}) => {
+const Home = () => {
   
-  const {exploreValue: [exploreList, setExploreList], geoLocationValue:[ geoLocation, setGeoLocation], favoritesValue:[favoritesList, setFavoritesList]} = useGlobalState()
+  const {
+      exploreValue: [exploreList, setExploreList], 
+      themeValue:[theme, setTheme], 
+      bgColorValue:[bgColor,setBgColor],
+      geoLocationValue:[ geoLocation], 
+      favoritesValue:[favoritesList, setFavoritesList]} = useGlobalState()
+  
   const [isLoading, setIsLoading] = useState(true)
   const [isLoading2, setIsLoading2] = useState(true)
   const [location, setLocation] = useState(null)
   const [message, setMessage] = useState(null)
+  const [isDay, setIsDay] = useState(null)
   
+  function setBackgroundTheme(value){
+    if(theme==='Dynamic'){
+      if(value==true){
+        setBgColor(styles.day)
+        localStorage.setItem('RESA_bgColor', styles.day)
+        setIsDay(true)
+      }
+      else{
+        setBgColor(styles.night)
+        localStorage.setItem('RESA_bgColor', styles.night)
+        setIsDay(false)
+      }
+    }
+    else if(theme==='Day'){
+      setBgColor(styles.day)
+      localStorage.setItem('RESA_bgColor', styles.day)
+      setIsDay(false)
+    }
+    else{
+      setBgColor(styles.night)
+      localStorage.setItem('RESA_bgColor', styles.night)
+      setIsDay(false)
+    }
+  }
+
   const fetchWeather = async()=>{
     if(geoLocation!=='-1' && geoLocation){
       if(navigator.onLine){
@@ -28,12 +59,13 @@ const Home = ({}) => {
           console.log(`this geoLocation==> ${geoLocation}`)
           let res = await CityWeather(geoLocation.coord);
           localStorage.setItem('RESA_location', JSON.stringify(res));
-          setLocation({...res});
+          setLocation({...res})
+          setBackgroundTheme(res.isDay)
           console.log('Online-RESA_location')
           console.log(res)
         } 
         catch (error) {
-          setMessage(error.message)
+           setMessage(error.message)
           console.log(`ERROR MESSAGE is==> ${error}`)
         }
         finally{
@@ -42,6 +74,7 @@ const Home = ({}) => {
       }
       else{
         setLocation({...geoLocation})
+        setBackgroundTheme(geoLocation.isDay)
         console.log('offline-RESA_location')
         setIsLoading(false)
       }
@@ -55,6 +88,7 @@ const Home = ({}) => {
         try {
           let res = await CityWeather(exploreList[randomIndex])
           setLocation({...res})
+          setBackgroundTheme(res.isDay)
         } 
         catch (error) {
           setMessage(error.message)
@@ -64,7 +98,8 @@ const Home = ({}) => {
         if(navigator.onLine){
           try {
             let res = await CityWeather(bothList[randomIndex].coord)
-            setLocation({...res})  
+            setLocation({...res})
+            setBackgroundTheme(res.isDay)
           } 
           catch (error) {
             setMessage(error.message)
@@ -72,6 +107,7 @@ const Home = ({}) => {
         }
         else{
           setLocation({...bothList[randomIndex]})
+          setBackgroundTheme(bothList[randomIndex].isDay)
         }
       }
       setIsLoading(false)
@@ -131,13 +167,15 @@ const Home = ({}) => {
     setIsLoading2(false)
   }
 
+  
+
   useEffect(()=>{
     fetchWeather();
     fetchExploreFavorites();
   },[])
 
     return (
-      <div className='home'>
+      <div className='home' style={{background:bgColor, color: bgColor===styles.day? 'black':'white'}}>
         {
           isLoading?
             <Loading />
@@ -163,7 +201,7 @@ const Home = ({}) => {
           </>
         }
 
-        <div className="home-body">
+        <div className="home-body" >
         {
           isLoading2?
             <Loading/>

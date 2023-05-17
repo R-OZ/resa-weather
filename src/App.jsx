@@ -9,12 +9,21 @@ import Explore from "./pages/FavoritesExplore/Explore"
 import Settings from './pages/Settings/Settings';
 import Context from "./Context";
 import NotFound from "./pages/NotFound/NotFound";
-import { useGlobalState } from "./Context";
+import { useGlobalState} from "./Context";
 import Welcome from "./components/Welcome/Welcome";
+import { styles } from './utilities/Styling';
 
 
 function App() {
   const {geoLocationValue: [geoLocation, setGeoLocation]} = useGlobalState()
+  
+  useEffect(()=>{
+    const value = localStorage.getItem('RESA_theme')
+    if(!value){
+      localStorage.setItem('RESA_theme', 'Dynamic')
+      localStorage.setItem('RESA_bgColor', styles.day)
+    }
+  }, [])
   return (
     <>
         <Nav/>

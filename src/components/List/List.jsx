@@ -12,7 +12,7 @@ const List = ({id, cities}) => {
         <div className="list-title">
             <img id='list-icon' src={id === "explore"? explore: favorite} alt="" />
             <p id="list-text">{id==="explore"? "Explore": "Favorites"}</p>
-            <NavLink to={id==='explore'? '/explore':'/favorites'} className="list-edit-btn">Edit</NavLink>
+            <NavLink to={id==='explore'? '/explore':'/favorites'} id="list-edit-btn">Edit</NavLink>
         </div>
 
         <div className="list-cards">

@@ -1,11 +1,18 @@
 import React from 'react'
 import './notFound.css'
 import Sad from '../../assets/aminations/Sad'
+import { styles } from '../../utilities/Styling'
+import { useGlobalState } from '../../Context'
 
 const NotFound = () => {
+    const {bgColorValue:[bgColor]} = useGlobalState();
+    const nFStyles={
+        background: bgColor,
+        color:  bgColor===styles.day? 'black': 'white'
+      }
   return (
     <>
-    <div className='nf'>
+    <div style={nFStyles} className='nf'>
         <div className="nf-logo">
             <Sad/>
         </div>

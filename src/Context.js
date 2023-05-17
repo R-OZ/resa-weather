@@ -1,4 +1,5 @@
 import React,{useState, useContext, createContext} from 'react'
+import { styles } from './utilities/Styling'
 
 const GlobalState = createContext()
 
@@ -7,9 +8,10 @@ export function useGlobalState(){
 }
 
 const largestCities =['35.69,139.69','28.67, 77.22','31.01,121.41','23.72,90.41','-23.53,-46.62','19.43,-99.13','30.05,31.25','39.93,116.39','mumbai india','34.69,135.5','29.56,106.55','24.87,67.05','-4.3,15.3','6.45,3.4','41.02,28.96',]
-// const largestCities=['35.6762,139.6503','28.67,77.22','31.2304,121.4737','23.72,90.41','-23.5558,-46.6396','19.4326,-99.1332','30.0444,31.2357','39.9042,116.4074','19.0760,72.8777','34.6937,135.5023','29.5657,106.5512','24.8607,67.0011','-4.3033,15.3105','6.5244,3.3792','41.0082,28.9784']
 const Context = ({children}) => {
     const [searchText, setSearchText] = useState('')
+    const [theme, setTheme] = useState(localStorage.getItem('RESA_theme')??'Dynamic')
+    const [bgColor, setBgColor] = useState(localStorage.getItem('RESA_bgColor')??styles.day)
     const [favoritesList, setFavoritesList] = useState(JSON.parse(localStorage.getItem('RESA_favorites'))??[])
     const [exploreList, setExploreList] = useState(JSON.parse(localStorage.getItem('RESA_explore'))??largestCities)
     const [userWindowWidth, setUserWindowWidth] = useState(window.innerWidth)
@@ -21,10 +23,13 @@ const Context = ({children}) => {
     });    
     
 
+    
   return (
     <GlobalState.Provider 
       value={{
-          searchValue:[searchText, setSearchText], 
+          searchValue:[searchText, setSearchText],
+          themeValue:[theme, setTheme],
+          bgColorValue: [bgColor, setBgColor],
           favoritesValue: [favoritesList, setFavoritesList],
           exploreValue: [exploreList, setExploreList],
           currentCityValue: [currentCity, setCurrentCity],

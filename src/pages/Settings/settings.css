@@ -16,6 +16,7 @@
     padding: 10px 15px;
     border-radius: 12px;
     background-color: rgba(193, 209, 255, 0.462);
+    color: black;
 }
 .settings-theme-head{
     display: flex;
@@ -102,6 +103,7 @@
 }
 a{
     text-decoration: none;
+    color: inherit
 }
 .settings-reset{
     display: flex;
@@ -114,7 +116,7 @@ a{
     border: 2px solid white;
     border-radius: 8px;
     cursor: pointer;
-    color: black;
+    color: inherit;
     text-decoration: none;
 
     background-color: rgba(26, 26, 26, 0.033);
@@ -137,6 +139,7 @@ a{
     border-radius: 12px;
     display: none;
     background-color: rgba(193, 209, 255, 0.462);
+    color: black;
 }
 .-reveal{
     display: block;

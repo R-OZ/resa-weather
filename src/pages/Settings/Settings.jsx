@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import './settings.css'
-import theme from '../../assets/icons/theme.png'
+import themeIcon from '../../assets/icons/theme.png'
 import feedback from '../../assets/icons/feedback.png'
 import reset from '../../assets/icons/reset.png'
 import { useGlobalState } from '../../Context'
+import { styles } from '../../utilities/Styling'
 
 
 const ThemeOption =({name, color, checkValue, setCheckValue})=>{
     return(
-        <label onClick={()=>setCheckValue(name)} className="theme" htmlFor={name}>
-            <input type="radio" name="theme-radio" id={name} checked={checkValue === name}  />
+        <label className="theme" htmlFor={name}>
+            <input type="radio" name="theme-radio" id={name} defaultChecked={checkValue === name}  />
             <div className={`theme-box ${name==="Dynamic"?'semi-box':''}`} style={{background:color}}></div>
             <p id="theme-name">{name}</p>
         </label>
@@ -18,32 +19,53 @@ const ThemeOption =({name, color, checkValue, setCheckValue})=>{
 
 const Settings = () => {
     const [openConfirm, setOpenConfirm] = useState(false)
-    const [checkValue, setCheckValue] = useState('Day')
-    const {searchValue:[searchText, setSearchText],favoritesValue: [favoritesList, setFavoritesList],exploreValue: [exploreList, setExploreList],currentCityValue: [currentCity, setCurrentCity],} = useGlobalState()
-
+    const {bgColorValue:[bgColor, setBgColor], themeValue:[theme,setTheme], searchValue:[searchText, setSearchText],favoritesValue: [favoritesList, setFavoritesList],exploreValue: [exploreList, setExploreList],currentCityValue: [currentCity, setCurrentCity],} = useGlobalState()
     const [isLocalStorage, setIsLocalStorage] = useState(localStorage.getItem('RESA_location')) //checks if this key is  no longer available to prove reset
+    var checkValue = theme
+    const settingsStyles={
+        background: bgColor,
+        color: bgColor === styles.day? 'black': 'white',
+    }
+    
     const resetRESA = ()=>{
         localStorage.removeItem('RESA_location')
+        localStorage.removeItem('RESA_theme')
+        localStorage.removeItem('RESA_bgColor')
         localStorage.removeItem('RESA_explore')
         localStorage.removeItem('RESA_favorites')
         localStorage.removeItem('RESA_currentCity')
         window.location.reload()
     }
+    const handleTheme = (themeID)=>{
+        setTheme(themeID)
+        localStorage.setItem('RESA_theme', themeID)
+        if (themeID!=='Dynamic'){
+            if(themeID === 'Day'){
+                setBgColor(styles.day)
+                localStorage.setItem('RESA_bgColor', styles.day)
+            }
+            else{
+                setBgColor(styles.night)
+                localStorage.setItem('RESA_bgColor', styles.night)
+            }
+        }
+        console.log(`JUST CHANGED THEME TO ==> ${themeID}`)
+    }
   return (
-    <div className='settings'>
+    <div style={settingsStyles} className='settings'>
         <p className="settings-title">Settings</p>
         
         <div className="settings-theme">
             <p className="settings-theme-head">
-                <img src={theme} alt="theme-icon" className="settings-theme-icon" />
+                <img src={themeIcon} alt="theme-icon" className="settings-theme-icon" />
                 <span>Theme</span>
             </p>
             <div className="settings-theme-body">
                 <p id="theme-title">Select your preferred theme style for the application:</p>
                 <div className="themes">
-                    <ThemeOption checkValue={checkValue} setCheckValue={setCheckValue} name={'Dynamic'} color={'linear-gradient(45deg, #1c92d2, #abaeae)'}/>
-                    <ThemeOption checkValue={checkValue} setCheckValue={setCheckValue} name={'Day'} color={'linear-gradient(45deg, #1c92d2, #abaeae)'}/>
-                    <ThemeOption checkValue={checkValue} setCheckValue={setCheckValue} name={'Night'} color={'rgb(54, 25, 100)'}/>
+                    <div onClick={()=>handleTheme('Dynamic')}><ThemeOption checkValue={checkValue} name={'Dynamic'} color={'linear-gradient(45deg, #1c92d2, #abaeae)'}/></div>
+                    <div onClick={()=>handleTheme('Day')}><ThemeOption checkValue={checkValue} name={'Day'} color={'linear-gradient(45deg, #1c92d2, #abaeae)'}/></div>
+                    <div onClick={()=>handleTheme('Night')}><ThemeOption checkValue={checkValue} name={'Night'} color={'rgb(54, 25, 100)'}/></div>
                 </div>
             </div>
         </div>
@@ -70,7 +92,7 @@ const Settings = () => {
             <p id="confirm-caption">Resetting RESA will restore the application to its default settings
             and will erase all previously cached data. e.g favorites and notes</p>          
 
-            <div className="confirm-buttons">
+            <div style={{color: bgColor==styles.day? 'black':'white'}} className="confirm-buttons">
                 <div onClick={resetRESA} className="confirm-button">Yes</div>
                 <div onClick={()=>setOpenConfirm(false)} className="confirm-button">No</div>
             </div>

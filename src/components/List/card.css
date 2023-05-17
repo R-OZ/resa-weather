@@ -16,7 +16,7 @@
         position: relative;
     }
     #card-city{
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 600;
         white-space: nowrap; 
         overflow: hidden; /* Hide the horizontal overflow */
@@ -68,7 +68,7 @@
         gap: 5px;
     }
     #card-city{
-        font-size: 20px;
+        font-size: 18px;
     }
     #card-icon{
         height: 40px;

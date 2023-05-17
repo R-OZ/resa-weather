@@ -7,7 +7,7 @@ import { IconMapper } from '../../utilities/IconMapper'
 
 const Featured = ({city, description, temperature, high, low, windSpeed, humidty}) => {
   return (
-    <div className='featured-container'>
+    <div className='featured-container' >
       <p id="featured-city">{city}</p>
       <p id="featured-weather">{description}</p>
       

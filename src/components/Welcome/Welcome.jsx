@@ -31,6 +31,8 @@ const Welcome = () => {
         CityWeather(`${position.coords.latitude.toString()},${position.coords.longitude.toString()}`)
           .then(res =>{
             localStorage.setItem('RESA_location', JSON.stringify(res))
+            localStorage.setItem('RESA_currentCity', JSON.stringify(res))
+            setCurrentCity(res)
             setGeoLocation(res)
             navigate('/city')
           })
