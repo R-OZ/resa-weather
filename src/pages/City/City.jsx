@@ -20,7 +20,6 @@ import { useGlobalState } from '../../Context'
 import _ from 'lodash'
 import { styles } from '../../utilities/Styling'
 
-
 const HourCardIcon =({image, title, data})=>{
   return(
     <div className="city-hour-weather">

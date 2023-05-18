@@ -9,14 +9,13 @@ import { useGlobalState } from '../../Context'
 const Info = () => {
   const {bgColorValue:[bgColor]} = useGlobalState()
   const InfoStyles={
-    background: bgColor,
     color:  bgColor==styles.day? 'black': 'white'
   }
   return (
     <div style={InfoStyles}>
         <p className="info-title">Oops...Nothing To Show Here</p>
         <p className="info-caption">Start personalizing your weather app to wake up your homepage</p>
-
+        
         <NavLink to='/favorites' className="info-favorites">
           <img src={add} alt="add" id="info-icon" />
           <span>Add to favorites</span>

@@ -52,26 +52,36 @@ const Home = () => {
   }
 
   const fetchWeather = async()=>{
+    //if the user gave permission
     if(geoLocation!=='-1' && geoLocation){
       if(navigator.onLine){
-        try {
+          let newGeoLocation = null
           setIsLoading(true)
-          console.log(`this geoLocation==> ${geoLocation}`)
-          let res = await CityWeather(geoLocation.coord);
-          localStorage.setItem('RESA_location', JSON.stringify(res));
-          setLocation({...res})
-          setBackgroundTheme(res.isDay)
-          console.log('Online-RESA_location')
-          console.log(res)
-        } 
-        catch (error) {
-           setMessage(error.message)
-          console.log(`ERROR MESSAGE is==> ${error}`)
+          navigator.geolocation.getCurrentPosition(
+            position =>{
+              console.log(`this geoLocation==> ${geoLocation}`);
+              CityWeather(`${position.coords.latitude.toString()},${position.coords.longitude.toString()}`)
+                .then(res=>{
+                  localStorage.setItem('RESA_location', JSON.stringify(res));
+                  setLocation({...res})
+                  setBackgroundTheme(res.isDay)
+                  console.log('Online-RESA_location')
+                  console.log(res)
+                  console.log('new location updated!')
+                  setIsLoading(false)
+                })
+                .catch(error =>{
+                  console.log(error)
+                  setMessage(error.message)
+                  setIsLoading(false)
+                })
+            },
+            error =>{
+              console.log('Unable to get new location')
+              setLocation(geoLocation)
+            }
+          )
         }
-        finally{
-          setIsLoading(false)
-        }
-      }
       else{
         setLocation({...geoLocation})
         setBackgroundTheme(geoLocation.isDay)
@@ -79,6 +89,7 @@ const Home = () => {
         setIsLoading(false)
       }
     }
+    //if the user didn't randomly pick from list
     else if(favoritesList.length>0 || exploreList.length>0){
       setIsLoading(true)
       console.log('condition2')
@@ -194,7 +205,7 @@ const Home = () => {
                     humidty={location.humidity}
                   />
                 :
-                  <Asleep />
+                  <Asleep theme={bgColor} />
               :
                 <h1 style={{textAlign:"center", color:'red', marginTop: '20px'}}>{message}</h1>
             }

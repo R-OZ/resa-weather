@@ -26,24 +26,31 @@ const Welcome = () => {
   const {globalLoadingValue:[globalLoading, setGlobalLoading], geoLocationValue:[geoLocation, setGeoLocation], currentCityValue:[currentCity, setCurrentCity]} = useGlobalState()
   
   const getLocation = ()=>{
-    navigator.geolocation.getCurrentPosition(
-      position  => {
-        CityWeather(`${position.coords.latitude.toString()},${position.coords.longitude.toString()}`)
-          .then(res =>{
-            localStorage.setItem('RESA_location', JSON.stringify(res))
-            localStorage.setItem('RESA_currentCity', JSON.stringify(res))
-            setCurrentCity(res)
-            setGeoLocation(res)
-            navigate('/city')
-          })
-          .catch(err=> {console.log(err); setMessage(err)})
-      },
-      error => {
-        console.log(error.message);
-        localStorage.setItem('RESA_location', "-1")
-        setGeoLocation("-1")
-      }
-    );
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(
+        position  => {
+          CityWeather(`${position.coords.latitude.toString()},${position.coords.longitude.toString()}`)
+            .then(res =>{
+              localStorage.setItem('RESA_location', JSON.stringify(res))
+              localStorage.setItem('RESA_currentCity', JSON.stringify(res))
+              setCurrentCity(res)
+              setGeoLocation(res)
+              navigate('/city')
+            })
+            .catch(err=> {console.log(err); setMessage(err)})
+        },
+        error => {
+          console.log(error.message);
+          localStorage.setItem('RESA_location', "-1")
+          setGeoLocation("-1")
+        },
+        {enableHighAccuracy: true}
+      );
+    }
+    else{
+      localStorage.setItem('RESA_location', "-1")
+      setGeoLocation("-1")
+    }
   }
   useEffect(()=>{
     getLocation();

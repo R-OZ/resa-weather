@@ -1,8 +1,10 @@
 import React, {useRef} from 'react'
 import { Player } from '@lottiefiles/react-lottie-player';
 import sleeping from './data/sleeping.json'
+import sleepingDark from './data/sleeping3.json'
+import { styles } from '../../utilities/Styling';
 
-const Asleep = () => {
+const Asleep = ({theme}) => {
   const myRef = useRef();
     
     return (
@@ -11,7 +13,7 @@ const Asleep = () => {
           autoplay={true}
           loop={true}
           controls={false}
-          src={sleeping}
+          src={theme===styles.day? sleeping: sleepingDark}
           // background='#000000'
           style={{ height: '300px', width: '300px', margin:'auto' }}
         >

@@ -14,7 +14,7 @@ const NotFound = () => {
     <>
     <div style={nFStyles} className='nf'>
         <div className="nf-logo">
-            <Sad/>
+            <Sad theme={bgColor}/>
         </div>
         <div className="nf-text">
             <p id="nf-title">
