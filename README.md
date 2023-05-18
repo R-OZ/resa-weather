@@ -18,26 +18,29 @@ RESA is a feature-rich weather app companion that enhances your weather tracking
 6. **Reset**: Clear up memory or restore RESA back to its default settings with ease. The reset option, accessible from the settings page, allows users to restore the app to its original state
  
 
+
 ## User Interface
 The user interface (UI) of this RESA is designed to provide a visually appealing and intuitive experience for users. Here are some key aspects of the UI from both mobile and desktop views:
 
-### Mobile view:
-![Welcome Page](screenshots/welcome-mobile.png)
-![Home Page Light Theme](screenshots/homepage-mobile.png)
-![Home Page Dark Theme](screenshots/homepage-dark-mobile.png)
-![Favorites List](screenshots/favorites-mobile.png)
-![Detailed City Page](screenshots/city-mobile.png)
-![Note Entry](screenshots/notes-mobile.png)
-![Note Management](screenshots/notes2-mobile.png)
-![Settings](screenshots/settings-mobile.png)
+### Mobile views:
+Below is a collaged screenshots of the different mobile views of the user interface of RESA:
+
+![8 different views of RESA on mobile](screenshots/mobile-views.JPG)
+Welcome page | Home page in light theme | Home page in dark theme | Settings page | Explore list
+City page in light theme | City page in dark theme | New note | Favorites List | Notes management
+
 
 ### Desktop view:
-![Welcome Page](screenshots/welcome.png)
-![Home Page Light Theme](screenshots/homepage.png)
-![Home Page Dark Theme](screenshots/homepage-dark.png)
-![Favorites List](screenshots/favorites.png)
-![City Page with Notes](screenshots/city.png)
-![Settings](screenshots/settings.png)
+Here are gouped collaged screenshots of the desktop views of the RESA user interface:
+
+![4 different views of RESA on desktop](screenshots/desktop-views1.JPG)
+Welcome page | Home page in dark theme
+Settings page | Home page in light theme
+
+![4 different views of RESA on desktop](screenshots/desktop-views2.JPG)
+City page & new note | Explore list
+City page & notes management | Favorites List
+
 
 
 ## Folder Structure
@@ -61,6 +64,7 @@ The folder structure of this RESA is designed to promote a clear separation of c
   * `utilities/`: Includes utility functions or helper modules used across different parts of the application.
   * `App.jsx/`: The entry point of the application that renders the main component hierarchy.
   * `Context.js/`: Holds and manages the state logic across the application using the useContext API
+
 
 
 ## Available Scripts
