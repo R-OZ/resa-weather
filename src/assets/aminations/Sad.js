@@ -1,7 +1,7 @@
 import React, {useRef} from 'react'
 import { Player } from '@lottiefiles/react-lottie-player';
 import sadFace from './data/sad.json'
-import sadFace2 from './data/sad3.json'
+import sadFace2 from './data/sad2.json'
 import { styles } from '../../utilities/Styling';
 
 const Sad = ({theme}) => {
