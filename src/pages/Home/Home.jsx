@@ -79,7 +79,8 @@ const Home = () => {
             error =>{
               console.log('Unable to get new location')
               setLocation(geoLocation)
-            }
+            },
+            {enableHighAccuracy: true}
           )
         }
       else{
