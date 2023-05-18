@@ -1,10 +1,75 @@
-# Getting Started with Create React App
+# Getting Started with RESA Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+RESA is a fully responsive versatile weather web-app companion that empowers users to explore diverse cities worldwide and effortlessly stay updated with their weather conditions. With RESA, users can add cities to a favorites list, ensuring quick access to the weather information that matters to them. Get start here: https://resa-weather.vercel.app
+
+## Key Features
+RESA is a feature-rich weather app companion that enhances your weather tracking experience with its customizable and intuitive features. Stay informed and plan your activities accordingly with the following key features:
+
+1. **City Exploration**: Dive into weather conditions in cities worldwide. RESA provides a detailed page view for each city, including accurate 6-day forecasts, enabling you to make informed decisions.
+
+2. **Explore List**: Discover the 15 largest cities in the world (by population) arranged alphabetically, along with their weather conditions. Customize this list to match your preferences and easily manage it according to your needs.
+
+3. **Favorites List**: Create a personalized favorites list of frequently checked cities. This convenient feature ensures easy access to weather forecasts for your preferred locations. The favorites list takes priority over the explore list and is arranged alphabetically for quick reference.
+
+4. **Notes Management**: Stay organized by adding, editing, and deleting notes for each city listed in your favorites or explore list. Keep important details and observations for individual locations, helping you plan your activities effectively.
+
+5. **Dynamic Theming**: RESA offers dynamic theming based on the time of day for the city currently in view. By default, the application adjusts its theme accordingly. However, users have the option to manually set the theme to Day or Night or choose the dynamic theme setting from the app's settings page.
+
+6. **Reset**: Clear up memory or restore RESA back to its default settings with ease. The reset option, accessible from the settings page, allows users to restore the app to its original state
+ 
+
+## User Interface
+The user interface (UI) of this RESA is designed to provide a visually appealing and intuitive experience for users. Here are some key aspects of the UI from both mobile and desktop views:
+
+### Mobile view:
+![Welcome Page](screenshots/welcome-mobile.png)
+![Home Page Light Theme](screenshots/homepage-mobile.png)
+![Home Page Dark Theme](screenshots/homepage-dark-mobile.png)
+![Favorites List](screenshots/favorites-mobile.png)
+![Detailed City Page](screenshots/city-mobile.png)
+![Note Entry](screenshots/notes-mobile.png)
+![Note Management](screenshots/notes2-mobile.png)
+![Settings](screenshots/settings-mobile.png)
+
+### Desktop view:
+![Welcome Page](screenshots/welcome.png)
+![Home Page Light Theme](screenshots/homepage.png)
+![Home Page Dark Theme](screenshots/homepage-dark.png)
+![Favorites List](screenshots/favorites.png)
+![City Page with Notes](screenshots/city.png)
+![Settings](screenshots/settings.png)
+
+
+## Folder Structure
+The folder structure of this RESA is designed to promote a clear separation of concerns and maintainability. Below is an overview of the major folders and their purposes:
+* **`public/`**: This folder contains static files that are directly served by the web server.
+  * `public/index.html`: The main HTML file that serves as the entry point of the application.
+  * `public/ResaLogo.png`: The logo icon displayed in the browser tab or bookmark bar.
+
+* **`screenshots/`**: This folder contains the screenshots of the app in both mobile and desktop view.
+
+* **`src/`**: This folder contains the source code of the application.
+  * `api/`: This folder contains all the api function calls and their constants.
+    * `constants/`: This folder contains the api constants used across all api
+  * `assets/`: This folder stores static assets such as images, animations and icons the application.
+    * `animations/`: This contains all components and data for animations.
+      * `data/`: This Folder stores the json data for the animations.
+    * `icons/`: This folder contains all static icons for the application.
+    * `images/`: This folder stores all the weather images.
+  * `components/`: Contains reusable component folders (storing the components and their css respectively) used throughout the application.
+  * `pages/`: Houses the individual pages of the app. Each page may have its own subfolder conataing the page and its css respectively.
+  * `utilities/`: Includes utility functions or helper modules used across different parts of the application.
+  * `App.jsx/`: The entry point of the application that renders the main component hierarchy.
+  * `Context.js/`: Holds and manages the state logic across the application using the useContext API
+
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+This installs all the necessary dependencies on your system locally to run the app in developement mode. 
 
 ### `npm start`
 
@@ -29,42 +94,3 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
