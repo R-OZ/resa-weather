@@ -27,7 +27,7 @@ Here is a collaged screenshots of the different mobile views of the user interfa
 
 ![8 different views of RESA on mobile](screenshots/mobile-views.JPG)
 Welcome page | Home page in light theme | Home page in dark theme | Settings page | Explore list \
-City page in light theme | City page in dark theme | New note | Favorites List | Notes management \
+City page in light theme | City page in dark theme | New note | Favorites List | Notes management 
 
 
 ### Desktop view:
@@ -35,11 +35,11 @@ Here are grouped collaged screenshots of the desktop views of the RESA user inte
 
 ![4 different views of RESA on desktop](screenshots/desktop-views1.JPG)
 Welcome page | Home page in dark theme \
-Settings page | Home page in light theme \
+Settings page | Home page in light theme 
 
 ![4 different views of RESA on desktop](screenshots/desktop-views2.JPG)
 City page & new note | Explore list \
-City page & notes management | Favorites List \
+City page & notes management | Favorites List 
 
 
 
